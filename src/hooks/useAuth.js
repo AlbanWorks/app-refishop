@@ -6,7 +6,7 @@ import FETCH_STATES from '../utils/enums/fetchStates'
 const userData = {
     profile_picture: '/profile.jpg',
     username: 'Juancito',
-    role: 'empleado'
+    role: 'admin'
 }
 
 const useAuth = ()=>{

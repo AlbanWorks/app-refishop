@@ -1,4 +1,12 @@
 .container{
     padding-top: 10px;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.buttonContainer{
+    width: 150px;
+    height: 30px;
+    margin: 30px;
 }

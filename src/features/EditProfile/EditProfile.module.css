@@ -1,0 +1,51 @@
+.container{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.title{
+    font-size: 1em;
+    font-weight: 400;
+    color: var(--dark);
+    text-shadow: var(--textShadow);
+    width: 100%;
+    text-align: center;
+}
+.label{
+    box-sizing: border-box;
+    background-color: var(--primary);
+    color: var(--clear);
+    text-shadow: var(--textShadow);
+    width: 150px;
+    height: 30px;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--borderRadius);
+    margin: 10px;
+    box-shadow: var(--boxShadow);
+}
+.inputFile{
+    display: none;
+}
+.info{
+    width: 80%;
+    text-align: center;
+    font-size: 0.9em;
+    margin: 10px 0;
+}
+.inputContainer{
+    height: 30px;
+    border: 1px solid var(--dark);
+    border-radius: var(--borderRadius);
+}
+.buttonContainer{
+    width: 150px;
+    height: 30px;
+    box-sizing: border-box;
+    margin-top: 50px;
+}
