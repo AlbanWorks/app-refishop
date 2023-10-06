@@ -1,0 +1,13 @@
+ .input{
+    border: none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    border-radius: var(--borderRadius);
+    box-shadow: var(--borderRadius);
+    font-size: 0.9em;
+    padding: 5px;
+ } 

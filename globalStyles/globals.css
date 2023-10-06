@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+:root{
+    --negative: #DC5050;
+    --possitive: #74B94A;
+    --primary: #408DD4;
+    --secondary: #f5f5f5;
+    --container: #D9D9D9;
+    --clear: #ffffff;
+    --dark: #1a1a1a;
+    --boxShadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+    --textShadow: 0 0px 4px rgba(0, 0, 0, 0.2);
+    --borderRadius: 10px;
+    font-family: 'Inter', sans-serif;
+}
+
+
+.pageContainer{
+    box-sizing: border-box;
+    width: 100%;
+}

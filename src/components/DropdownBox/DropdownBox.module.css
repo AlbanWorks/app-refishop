@@ -1,0 +1,58 @@
+.boxClosed, .boxOpen{
+    background-color: var(--container);
+    width: 100%;
+    height: 40px;
+    border-radius: var(--borderRadius);
+    display: flex;
+    box-sizing: border-box;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+.boxOpen{
+    height: auto;
+}
+.info{
+    width: 90%;
+    display: flex;
+    font-weight: 200;
+    font-size: 1em;
+    color: var(--dark);
+    align-items: center;
+    justify-content: space-between;
+}
+.state{
+    font-size: 0.8em;
+}
+.container{
+    display: none;
+    width: 100%;
+    margin-top: 20px;
+}
+.boxOpen .info{
+    display: none;
+}
+.boxOpen .container{
+    display: block;
+}
+.title{
+    margin: 0;
+}
+.button{
+    border: none;
+    outline: none;
+    background: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.svg{
+    stroke: var(--dark);
+}

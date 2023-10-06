@@ -1,0 +1,22 @@
+ .primary, .secondary, .possitive, .negative{
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: var(--boxShadow);
+    text-shadow: var(--textShadow);
+    font-size: 0.9em;
+}
+.primary{
+    background-color: var(--primary);
+    color: var(--clear);
+}
+.possitive{
+    background-color: var(--possitive);
+    color: var(--clear);
+}
+.negative{
+    background-color: var(--negative);
+    color: var(--clear);
+}

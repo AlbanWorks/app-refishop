@@ -1,0 +1,43 @@
+.container{
+    box-sizing: border-box;
+    padding: 5px 10px;
+}
+.superiorModule{
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top:0;
+}
+.inferiorModule{
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top:5px;
+}
+.profile{
+    display: flex;
+    align-items: center;
+}
+.emName{
+    padding: 5px;
+    font-size: 0.9em;
+}
+.buttonContainer{
+    width: 120px;
+    height: 30px;
+}
+.select{
+    border: none;
+    outline: none;
+    background: none;
+    width: 120px;
+    height: 30px;
+    border-radius: var(--borderRadius);
+    background-color: var(--clear);
+    padding: 0 5px;
+    font-size: 0.9em;
+}

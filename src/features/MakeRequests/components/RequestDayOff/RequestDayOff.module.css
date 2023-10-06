@@ -1,0 +1,12 @@
+.inferiorContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 5px;
+}
+.buttonContainer{
+    width: 100px;
+    height: 30px;
+}

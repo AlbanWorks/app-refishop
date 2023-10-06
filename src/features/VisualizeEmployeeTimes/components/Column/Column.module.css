@@ -1,0 +1,25 @@
+.container{
+    width: 49%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.headerEntry, .headerExit {
+    height: 30px;
+    margin: 10px;
+    width: 100%;
+    border-radius: var(--borderRadius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9em;
+    color: var(--clear);
+    text-shadow: var(--textShadow);
+    box-shadow: var(--boxShadow);
+}
+.headerEntry{
+    background-color: var(--possitive);
+}
+.headerExit{
+    background-color: var(--negative);
+}

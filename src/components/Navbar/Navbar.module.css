@@ -1,0 +1,55 @@
+.navbar{
+    --navbarHeight: 60px;
+    position: relative;
+    width: 100%;
+    height: var(--navbarHeight);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--primary);
+    box-sizing: border-box;
+    padding: 10px;
+    color: var(--clear);
+    box-shadow: var(--boxShadow);
+}
+.profile{
+    display: flex;
+    align-items: center; 
+}
+.emName{
+    margin: 1em;
+    margin: 10px;
+    font-size: 1em;
+    font-weight: 400;
+    text-shadow: var(--textShadow);
+}
+.position{
+    font-size: 0.9em;
+    text-shadow: var(--textShadow);
+}
+.optionsOpen{
+    z-index: 100;
+    width: 100%;
+    height: 400px;
+    background-color: var(--secondary);
+    position: absolute;
+    top: var(--navbarHeight);
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--boxShadow);
+}
+.optionsClosed{
+    display: none;
+}
+.optButton{
+    border: none;
+    outline: none;
+    background: none;
+    background-color: var(--secondary);
+    width: 100%;
+    height: 40px;
+    text-align: start;
+    padding-left: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}

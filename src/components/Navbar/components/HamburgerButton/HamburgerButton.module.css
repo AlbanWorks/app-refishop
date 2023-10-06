@@ -1,0 +1,11 @@
+.button{
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0;
+    width: 40px;
+    min-width: 40px;
+}
+.svg{
+    stroke: var(--clear);
+}
