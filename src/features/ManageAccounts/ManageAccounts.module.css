@@ -10,3 +10,9 @@
     height: 30px;
     margin: 30px;
 }
+.subtitle{
+    font-weight: 400;
+    font-size: 1.1em;
+    font-style: normal;
+    color: var(--dark);
+}

@@ -1,9 +1,10 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import Account from './components/Account/Account'
 import st from './ManageAccounts.module.css'
-import ROLES from '../../utils/enums/roles'
 import { Button ,VARIANTS } from '../../components/Button/Button'
 import NewAccount from './components/NewAccount/NewAccount'
+import {db} from '../../services/firebase/firebaseConfig'
+import { collection, getDocs } from "firebase/firestore";
 
 const FS = {
     WAITING:'waiting',
@@ -11,43 +12,64 @@ const FS = {
     ERROR:'error'
 }
 
-const employeesProvisional = [
-    {
-        profile_picture: '/profile.jpg',
-        username: 'Juancito',
-        role: ROLES.ADMIN
-    },
-    {
-        profile_picture: '/profile.jpg',
-        username: 'Pepe',
-        role: ROLES.EMPLOYEE
-    }
-]
-
 const ManageAccounts = () => {
-    const [fetchState, setfetchState] = useState(FS.SUCSESS)
-    const [employees, setEmployees] = useState(employeesProvisional)
-    const [newAccount, setNewAccount] = useState(false)
+    const [fetchState, setfetchState] = useState(FS.WAITING)
+    const [employees, setEmployees] = useState([])
+    const [newAccounts, setNewAccounts] = useState([])
+
+    useEffect(() => {
+        fetchUsers('empleados')
+        fetchUsers('nuevos')
+    }, [])
+    
+    const fetchUsers = async (docName) => {
+        try{
+            const querySnapshot = await getDocs(collection(db, docName));
+            let users = []
+            querySnapshot.forEach((doc) => {
+                let user = doc.data()
+                user.id = doc.id
+                users.push(user)
+            });
+            setfetchState(FS.SUCSESS)
+            if(docName === 'empleados')setEmployees(users)
+            else if (docName === 'nuevos') setNewAccounts(users)
+        }
+        catch(error){
+            setfetchState(FS.ERROR)
+           alert(error)//pulir
+        }
+    }
+
+    const refresh = () => {
+        setfetchState(FS.WAITING)
+        fetchUsers('empleados')
+        fetchUsers('nuevos')
+    }
+
   return (
     <div className={st.container}>
-    {
-        fetchState === FS.SUCSESS ?
-        employees.map((employee, index)=>
-            <Account key={index} employee={employee}/>
-        )
-        :fetchState === FS.ERROR ?
-        <div>err</div>
-        :null
-    }
-    <div className={st.buttonContainer}>
-        <Button 
-            text={'Nuevo Empleado'} 
-            variant={VARIANTS.POSSITIVE} 
-            click={()=>setNewAccount(!newAccount)}
-        />
-    </div> 
         {
-            newAccount ? <NewAccount/> :null
+            fetchState === FS.SUCSESS ?
+                <>
+                    {
+                        employees.map((employee, index)=>
+                            <Account key={index} employee={employee} refresh={refresh}/>
+                        )
+                    }
+                    {
+                        newAccounts.length > 0 ? <h5 className={st.subtitle}>Nuevos Usuarios</h5> : null
+                    }
+                    {
+                        newAccounts.map((account, index)=>
+                            <NewAccount key={index} employee={account} refresh={refresh}/>
+                        )
+                    }
+                </>
+            :fetchState === FS.ERROR ?
+                <div>err</div>
+            : 
+                <div>SPINNER</div>
         }
     </div>
   )
