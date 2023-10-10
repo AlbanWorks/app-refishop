@@ -7,6 +7,7 @@ import REQ_TYPES from "../../utils/enums/requestTypes"
 import ManageAccounts from '../ManageAccounts/ManageAccounts'
 import VisualizeEmployeeTimes from "../VisualizeEmployeeTimes/VisualizeEmployeeTimes"
 import EditProfile from '../EditProfile/EditProfile'
+import MakeCashflowReports from "../MakeCashflowReports/MakeCashflowReports"
 
 const SectionSelector = ({section}) => {
 
@@ -27,6 +28,8 @@ const SectionSelector = ({section}) => {
                 <ManageAccounts/>
             :section === SECTIONS.VISUALIZE_EMPLOYEE_TIMES?
                 <VisualizeEmployeeTimes/>
+            :section === SECTIONS.MAKE_REPORTS?
+                <MakeCashflowReports/>
             :null
         }
     </>
