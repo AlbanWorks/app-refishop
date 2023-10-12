@@ -6,3 +6,8 @@
     font-size: 0.9em;
     margin-top: 10px;
 }
+.inputContainer{
+    width: auto;
+    height: 30px;
+    box-sizing: border-box;
+}

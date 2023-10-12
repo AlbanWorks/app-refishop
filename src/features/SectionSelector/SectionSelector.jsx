@@ -9,7 +9,7 @@ import VisualizeEmployeeTimes from "../VisualizeEmployeeTimes/VisualizeEmployeeT
 import EditProfile from '../EditProfile/EditProfile'
 import MakeCashflowReports from "../MakeCashflowReports/MakeCashflowReports"
 
-const SectionSelector = ({section}) => {
+const SectionSelector = ({section, userData}) => {
 
   return (
     <>
@@ -29,7 +29,7 @@ const SectionSelector = ({section}) => {
             :section === SECTIONS.VISUALIZE_EMPLOYEE_TIMES?
                 <VisualizeEmployeeTimes/>
             :section === SECTIONS.MAKE_REPORTS?
-                <MakeCashflowReports/>
+                <MakeCashflowReports userData={userData}/>
             :null
         }
     </>

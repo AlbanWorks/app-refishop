@@ -5,30 +5,16 @@ import DebitSection from './sections/DebitSection/DebitSection'
 import CreditSection from './sections/CreditSection/CreditSection'
 import TransferSection from './sections/TransferSection/TransferSection'
 import ClosesSection from './sections/ClosesSection/ClosesSection'
+import SendButton from './components/SendButton/SendButton'
 import SelectionBar from './components/SelectionBar/SelectionBar'
+import SECTIONS from './utils/enums/sections'
 
-const SECTIONS ={
-    DEBIT: 'debito',
-    CREDIT: 'credito',
-    TRANSFER: 'transferencia',
-    CLOSES: 'cierres'
-}
-
-const MakeCashflowReports = () => {
+const MakeCashflowReports = ({userData}) => {
     const [section, setSection] = useState(SECTIONS.DEBIT)
     const [debit, setDebit] = useState([])
     const [credit, setCredit] = useState([])
     const [transfer, setTransfer] = useState([])
     const [closes, setCloses] = useState({prisma:null, payway:null, mp:null })
-
-    const enviar = () => {
-        const reporte = {
-            employee: {id:'id', emName:'nombreEmpleado'},
-            timestamp: 'timestamp',
-            debit,credit,transfer,closes
-        }
-        console.log(reporte);
-    }
 
   return (
     <div className={st.spacer}>
@@ -60,15 +46,7 @@ const MakeCashflowReports = () => {
                         setCloses={(value)=> setCloses(value)}
                     />
             }
-            <div className={st.inferiorModule}>
-                <div className={st.sendButtonContainer}>
-                        <Button 
-                            text={'Enviar'} 
-                            variant={VARIANTS.PRIMARY}
-                            click={enviar}
-                        />
-                </div>
-            </div>
+           <SendButton data={{section, debit, transfer, closes, userData}}/>
         </div>
     </div>
   )

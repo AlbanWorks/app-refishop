@@ -1,7 +1,6 @@
 import React from 'react'
 import st from './DebitSection.module.css'
 import BasicInput from '../../../../components/Inputs/BasicInput/BasicInput'
-import Titles from '../../components/Titles/Titles';
 import AddRowButton from '../../components/AddRowButton/AddRowButton';
 import DeleteButton from '../../components/DeleteButton/DeleteButton';
 import {addRow, deleteRow} from '../../utils/methods/handleChanges'

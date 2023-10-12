@@ -1,7 +1,6 @@
 import React from 'react'
 import st from './CreditSection.module.css'
 import BasicInput from '../../../../components/Inputs/BasicInput/BasicInput'
-import Titles from '../../components/Titles/Titles';
 import AddRowButton from '../../components/AddRowButton/AddRowButton';
 import DeleteButton from '../../components/DeleteButton/DeleteButton';
 import SECTIONS from '../../utils/enums/sections';
@@ -36,7 +35,7 @@ const CreditSection = ({credit, setCredit}) => {
                                 change={(value)=>handleChange(index,'ticket', value)}
                             />
                         </div>
-                        <DeleteButton deleteRow={()=>()=>setCredit(deleteRow(index, credit))}/>
+                        <DeleteButton deleteRow={()=>setCredit(deleteRow(index, credit))}/>
                     </div>
                 )
             }

@@ -20,7 +20,7 @@ export default function Home() {
             loginState === LOGIN_STATE.USER && userData ?
                 <div className='pageContainer'>
                     <Navbar userData={userData} selectOption={(value)=>setSelectedSection(value)}/>
-                    <SectionSelector section={selectedSection}/>
+                    <SectionSelector section={selectedSection} userData={userData}/>
                 </div>
             :loginState === LOGIN_STATE.NEW_USER ?
                 <div>

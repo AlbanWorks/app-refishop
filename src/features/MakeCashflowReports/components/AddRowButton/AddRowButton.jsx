@@ -7,7 +7,7 @@ const AddRowButton = ({addRow}) => {
     <div className={st.addRowContainer}>
         <div className={st.addRowButtonContainer}>
                 <Button 
-                    text={'Agregar'} 
+                    text={'Agregar Fila'} 
                     variant={VARIANTS.POSSITIVE}
                     click={addRow}
                 />

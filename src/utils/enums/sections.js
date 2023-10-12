@@ -1,6 +1,6 @@
 const SECTIONS = {
     CHECK_ENTRY_AND_EXIT: 'Marcar Horarios',
-    MAKE_REPORTS: 'Hacer Cierre de Caja',
+    MAKE_REPORTS: 'Hacer Reporte de Ventas',
     EDIT_PROFILE: 'Editar Perfil',
     HANDLE_REQUESTS: 'Ver Solicitudes',
     REQUEST_FREE_DAY: 'Solicitar Día Libre',

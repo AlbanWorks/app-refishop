@@ -1,7 +1,6 @@
 import React from 'react'
 import st from './TransferSection.module.css'
 import BasicInput from '../../../../components/Inputs/BasicInput/BasicInput'
-import Titles from '../../components/Titles/Titles';
 import AddRowButton from '../../components/AddRowButton/AddRowButton';
 import DeleteButton from '../../components/DeleteButton/DeleteButton';
 import SECTIONS from '../../utils/enums/sections';
