@@ -19,7 +19,7 @@ const MakeCashflowReports = () => {
     const [debit, setDebit] = useState([])
     const [credit, setCredit] = useState([])
     const [transfer, setTransfer] = useState([])
-    const [closes, setCloses] = useState([])
+    const [closes, setCloses] = useState({prisma:null, payway:null, mp:null })
 
     const enviar = () => {
         const reporte = {

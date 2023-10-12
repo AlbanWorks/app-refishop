@@ -1,40 +1,39 @@
 import React from 'react'
 import st from './ClosesSection.module.css'
 import BasicInput from '../../../../components/Inputs/BasicInput/BasicInput'
-import Titles from '../../components/Titles/Titles';
-import AddRowButton from '../../components/AddRowButton/AddRowButton';
-import DeleteButton from '../../components/DeleteButton/DeleteButton';
-import {addRow, deleteRow} from '../../utils/methods/handleChanges'
-import SECTIONS from '../../utils/enums/sections';
 
+const ClosesSection = ({closes, setCloses}) => {
 
-
-const ClosesSection = () => {
-
-    const handleChange = (index, propname, value) => {
-        let sectionClone = [...debit]
-        sectionClone[index][propname] = value
-        setDebit(sectionClone)
+    const handleChange = (propname, value) => {
+        let sectionClone = {...closes}
+        sectionClone[propname] = value
+        setCloses(sectionClone)
     }
 
   return (
-    <div>
-    <Titles title={'Cierres'} columns={[]}/>
-    {
-        debit.map((item, index)=>
-            <div key={item.id} className={st.container}>
-                <div className={st.inputContainer}>
-                    <BasicInput 
-                        inputType={'number'} 
-                        defbalue={item.monto}
-                        change={(value)=> handleChange(index,'monto', value)}/>
-                </div>
-                <DeleteButton deleteRow={()=>deleteRow(index, debit)}/>
-            </div>
-        )
-    }
-    <AddRowButton addRow={()=>setDebit(addRow(debit,SECTIONS.DEBIT))}/>    
-</div>
+    <div className={st.container}>
+        <label className={st.subtitle} >Cierre Prisma</label>
+        <div className={st.inputContainer}>
+            <BasicInput 
+                inputType={'number'} 
+                defbalue={closes.prisma}
+                change={(value)=> handleChange('prisma', value)}/>
+        </div>
+        <label className={st.subtitle} >Cierre Payway</label>
+        <div className={st.inputContainer}>
+            <BasicInput 
+                inputType={'number'} 
+                defbalue={closes.payway}
+                change={(value)=> handleChange('payway', value)}/>
+        </div>
+        <label className={st.subtitle} >Cierre Mercado Pago</label>
+        <div className={st.inputContainer}>
+            <BasicInput 
+                inputType={'number'} 
+                defbalue={closes.mp}
+                change={(value)=> handleChange('ml', value)}/>
+        </div>
+    </div>   
   )  
 }
 

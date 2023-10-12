@@ -1,0 +1,8 @@
+.container{
+    display: flex;
+    flex-direction: column;
+}
+.subtitle{
+    font-size: 0.9em;
+    margin-top: 10px;
+}

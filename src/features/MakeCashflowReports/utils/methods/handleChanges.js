@@ -18,9 +18,6 @@ const addRow = (data, section) => {
     else if (section === SECTIONS.TRANSFER) {
         sectionClone.push({id:uuidv4(), monto:0, transf:0})
     } 
-    else if (section === SECTIONS.CLOSES) {
-        sectionClone.push({id:uuidv4(), prisma:0, payway:0, mp:0 })
-    } 
     return sectionClone
 }
 
