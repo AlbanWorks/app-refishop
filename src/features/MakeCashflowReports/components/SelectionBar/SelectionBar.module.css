@@ -1,0 +1,14 @@
+.sectionSelector{
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+.buttonContainer{
+    width: 80px;
+    height: 30px;
+    padding: 5px;
+}
