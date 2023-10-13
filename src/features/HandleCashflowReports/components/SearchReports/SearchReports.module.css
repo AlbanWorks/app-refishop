@@ -1,0 +1,15 @@
+.searchReports{
+    width: 100%;
+    background-color: var(--container);
+    border-radius: var(--borderRadius);
+    box-sizing: border-box;
+    height: 60px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.buttonContainer{
+    height: 30px;
+    width: 150px;
+}

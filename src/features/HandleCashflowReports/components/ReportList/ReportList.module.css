@@ -1,0 +1,10 @@
+.container{
+    margin-top: 20px;
+}
+.reportContainer{
+    box-sizing: border-box;
+    background-color: rgb(238, 238, 238);
+    border-radius: var(--borderRadius);
+    width: 100%;
+    padding: 10px;
+}

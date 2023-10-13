@@ -1,14 +1,10 @@
 import React, {useState} from 'react'
 import REQ_TYPES from '../../utils/enums/requestTypes'
 import st from './HandleRequests.module.css'
-import DropdownBox from '../../components/DropdownBox/DropdownBox'
 import Request from './components/Request/Request'
+import FS from '../../utils/enums/fetchStates'
 
-const FS = {
-    WAITING:'waiting',
-    SUCSESS:'sucsess',
-    ERROR:'error'
-}
+
 const requestProvisional = [
     {
         req_type: REQ_TYPES.FREE_DAY, 

@@ -1,15 +1,15 @@
 import { db } from "../../../../services/firebase/firebaseConfig";
 import { collection, addDoc} from "firebase/firestore";
 
-const sendReport = async (data) => {
+const sendReport = async ({debit,credit,transfer,closes,userData}) => {
     const report = {
-        username: data.username,
-        userid: data.userid,
-        timestamp: data.timestamp,
-        debit: data.debit,
-        credit: data.credit,
-        transfer: data.transfer,
-        closes: data.closes
+        timestamp: new Date(),
+        username: userData.username,
+        userid: userData.id,
+        debit,
+        credit,
+        transfer,
+        closes
     }
     try{
         const sendReport = await addDoc(collection(db, 'reportes'), report);

@@ -1,13 +1,14 @@
 import React,{useState} from 'react'
 import st from './MakeCashflowReports.module.css'
-import {Button, VARIANTS} from '../../components/Button/Button'
 import DebitSection from './sections/DebitSection/DebitSection'
 import CreditSection from './sections/CreditSection/CreditSection'
 import TransferSection from './sections/TransferSection/TransferSection'
 import ClosesSection from './sections/ClosesSection/ClosesSection'
-import SendButton from './components/SendButton/SendButton'
 import SelectionBar from './components/SelectionBar/SelectionBar'
 import SECTIONS from './utils/enums/sections'
+import FS from '../../utils/enums/fetchStates'
+import ConfirmCard from '../../components/ConfirmCard/ConfirmCard'
+import sendReport from './utils/methods/sendReport'
 
 const MakeCashflowReports = ({userData}) => {
     const [section, setSection] = useState(SECTIONS.DEBIT)
@@ -15,6 +16,23 @@ const MakeCashflowReports = ({userData}) => {
     const [credit, setCredit] = useState([])
     const [transfer, setTransfer] = useState([])
     const [closes, setCloses] = useState({prisma:null, payway:null, mp:null })
+    const [fetchState, setFetchState] = useState(FS.IDLE)
+
+
+    const HandleSendReport = async () => {
+        setFetchState(FS.FETCHING)
+        const query = await sendReport({debit,credit,transfer,closes,userData})
+        if(query.error) setFetchState(FS.ERROR)
+        else setFetchState(FS.SUCSESS)
+    }
+
+    const refresh = () => {
+        setDebit([])
+        setCredit([])
+        setTransfer([])
+        setCloses({prisma:null, payway:null, mp:null })
+        setFetchState(FS.IDLE)
+    }
 
   return (
     <div className={st.spacer}>
@@ -46,7 +64,30 @@ const MakeCashflowReports = ({userData}) => {
                         setCloses={(value)=> setCloses(value)}
                     />
             }
-           <SendButton data={{section, debit, transfer, closes, userData}}/>
+            <div className={st.inferiorModule}>
+                {
+                    fetchState === FS.IDLE ?
+                        <ConfirmCard 
+                            info={'Revise la informacion antes de enviarla'}
+                            buttonText={'Enviar'} 
+                            nextState={HandleSendReport}
+                        />
+                    :fetchState === FS.FETCHING ?
+                        <div>spinner</div>
+                    :fetchState === FS.ERROR ?
+                        <ConfirmCard 
+                            info={'Ha ocurrido un error, intentelo nuevamente'}
+                            buttonTextt={'Aceptar'} 
+                            nextState={()=>setFetchState(FS.IDLE)}
+                        />
+                    :
+                        <ConfirmCard 
+                            info={'El reporte se subió exitosamente'}
+                            buttonText={'Aceptar'} 
+                            nextState={refresh}
+                        />
+                }
+            </div>
         </div>
     </div>
   )

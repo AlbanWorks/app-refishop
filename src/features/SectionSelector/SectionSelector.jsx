@@ -8,6 +8,7 @@ import ManageAccounts from '../ManageAccounts/ManageAccounts'
 import VisualizeEmployeeTimes from "../VisualizeEmployeeTimes/VisualizeEmployeeTimes"
 import EditProfile from '../EditProfile/EditProfile'
 import MakeCashflowReports from "../MakeCashflowReports/MakeCashflowReports"
+import HandleCashflowReports from '../HandleCashflowReports/HandleCashflowReports'
 
 const SectionSelector = ({section, userData}) => {
 
@@ -30,6 +31,8 @@ const SectionSelector = ({section, userData}) => {
                 <VisualizeEmployeeTimes/>
             :section === SECTIONS.MAKE_REPORTS?
                 <MakeCashflowReports userData={userData}/>
+                :section === SECTIONS.HANDLE_REPORTS?
+                <HandleCashflowReports/>
             :null
         }
     </>

@@ -4,5 +4,4 @@ const FS = {
     SUCSESS: 'sucsess',
     ERROR: 'error'
 }
-
 export default FS

@@ -1,19 +1,15 @@
 import React,{useState,useEffect} from 'react'
 import Account from './components/Account/Account'
 import st from './ManageAccounts.module.css'
-import { Button ,VARIANTS } from '../../components/Button/Button'
 import NewAccount from './components/NewAccount/NewAccount'
 import {db} from '../../services/firebase/firebaseConfig'
 import { collection, getDocs } from "firebase/firestore";
+import FS from '../../utils/enums/fetchStates'
 
-const FS = {
-    WAITING:'waiting',
-    SUCSESS:'sucsess',
-    ERROR:'error'
-}
+
 
 const ManageAccounts = () => {
-    const [fetchState, setfetchState] = useState(FS.WAITING)
+    const [fetchState, setfetchState] = useState(FS.FETCHING)
     const [employees, setEmployees] = useState([])
     const [newAccounts, setNewAccounts] = useState([])
 
@@ -42,7 +38,7 @@ const ManageAccounts = () => {
     }
 
     const refresh = () => {
-        setfetchState(FS.WAITING)
+        setfetchState(FS.FETCHING)
         fetchUsers('empleados')
         fetchUsers('nuevos')
     }

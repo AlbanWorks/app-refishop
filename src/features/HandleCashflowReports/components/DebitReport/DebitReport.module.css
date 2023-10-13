@@ -1,0 +1,9 @@
+.container{
+    margin-top: 10px;
+}
+.row{
+    width: 100%;
+    background-color: rgb(240, 240, 240);
+    height: 30px;
+    border-radius: var(--borderRadius);
+}
