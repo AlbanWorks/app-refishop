@@ -4,6 +4,7 @@ import SECTIONS from "../src/utils/enums/sections"
 import { useRouter } from 'next/navigation'
 import useAuth from "../src/hooks/useAuth"
 import SectionSelector from "../src/features/SectionSelector/SectionSelector"
+import Spinner from "../src/components/Spinner/Spinner"
 
 export default function Home() {
     const [selectedSection, setSelectedSection] = useState(SECTIONS.CHECK_ENTRY_AND_EXIT)
@@ -26,7 +27,10 @@ export default function Home() {
                 <div>
                     Informe al administrador para que verifique su cuenta y pueda acceder al sistema
                 </div>
-            :<div>spinner</div>
+            : 
+                <div className='spinnerContainer'>
+                    <Spinner/>
+                </div>
         }
     </>
   )

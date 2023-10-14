@@ -39,16 +39,32 @@ const Signup = () => {
     <div className={st.container}>
         <form className={st.form}>
             <div className={st.inputContainer}>
-                <BasicInput placeholder={'nombre'} inputType={'text'} change={(value)=>setUsername(value)}/>
+                <BasicInput 
+                    placeholder={'nombre'} 
+                    inputType={'text'} 
+                    change={(value)=>setUsername(value)}
+                />
             </div>
             <div className={st.inputContainer}>
-                <BasicInput placeholder={'email'} inputType={'text'} change={(value)=>setEmail(value)}/>
+                <BasicInput 
+                    placeholder={'email'} 
+                    inputType={'text'} 
+                    change={(value)=>setEmail(value)}
+                />
             </div>
             <div className={st.inputContainer}>
-                <BasicInput placeholder={'contraseña'} inputType={'password'} change={(value)=> setPassword(value)}/>
+                <BasicInput 
+                    placeholder={'contraseña'} 
+                    inputType={'password'} 
+                    change={(value)=> setPassword(value)}
+                />
             </div>
             <div className={st.buttonContainer}>
-                <Button text={'Crear Cuenta'} variant={VARIANTS.PRIMARY} click={(e)=>signup(e)}/>
+                <Button 
+                    text={'Crear Cuenta'} 
+                    variant={VARIANTS.PRIMARY} 
+                    click={(e)=>signup(e)}
+                />
             </div>
         </form>
         <div className={st.extButtonContainer}>

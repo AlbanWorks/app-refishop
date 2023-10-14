@@ -1,0 +1,37 @@
+.tableContainer{
+    width: 100%;
+    background-color: var(--container);
+    display: flex;
+    border-radius: var(--borderRadius);
+}
+.column{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 10px;
+}
+.columnTitle{
+    background-color: var(--primary);
+    color: var(--clear);
+    height: 40px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--borderRadius);
+    box-shadow: var(--boxShadow);
+}
+.element{
+    background-color: var(--clear);
+    color: var(--dark);
+    height: 30px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: var(--borderRadius);
+    margin-top: 5px;
+    box-shadow: var(--boxShadow);
+    font-size: 0.9em;
+}

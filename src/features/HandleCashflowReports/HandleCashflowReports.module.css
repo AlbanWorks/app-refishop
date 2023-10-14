@@ -1,3 +1,15 @@
 .spacer{
     padding: 10px;
 }
+.spinnerContainer{
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.errorContainer{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}

@@ -1,7 +1,6 @@
 import React from 'react'
 import st from './ReportList.module.css'
-import DropdownBox from '../../../../components/DropdownBox/DropdownBox'
-import DebitReport from '../DebitReport/DebitReport'
+import Report from '../Report/Report'
 import InfoBlock from '../InfoBlock/InfoBlock'
 
 const ReportList = ({reports}) => {
@@ -10,11 +9,28 @@ const ReportList = ({reports}) => {
         {
             reports.map((report, index)=>
                 <div className={st.reportContainer}>
-                    <InfoBlock/>
-                    <DebitReport reportData={report}/>
-                    <DebitReport reportData={report}/>
-                    <DebitReport reportData={report}/>
-                    <DebitReport reportData={report}/>
+                    <InfoBlock data={report}/>
+                    <Report 
+                        title={'Débito'} 
+                        colTitles={['Monto']} 
+                        sectionData={report.debit}
+                    />
+                    <Report 
+                        title={'Crédito'} 
+                        colTitles={['Monto', 'Ticket Factura']} 
+                        sectionData={report.credit}
+                    />
+                    <Report 
+                        title={'Transferencias'} 
+                        colTitles={['Monto', 'N° Transf.']} 
+                        sectionData={report.transfer}
+                    />
+                    <Report 
+                        title={'Cierres'} 
+                        colTitles={['Payway', 'Prisma', 'Mercado Pago']} 
+                        sectionData={[report.closes]}
+                    />
+
                 </div>
             )
         }
