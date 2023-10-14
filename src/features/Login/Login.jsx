@@ -16,7 +16,7 @@ const Login = () => {
         e.preventDefault()
         signInWithEmailAndPassword(auth, email, password)
         .catch((error) => {
-            alert('Hubo un error al intentar coso ' + error)
+            alert('Ocurrió un error al intentar iniciar sesión, por favor revise sus datos e intentelo nuevamente, si el error persiste notifiquelo a un administrador o a soporte técnico')
         });
     }
 

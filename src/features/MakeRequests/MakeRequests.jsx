@@ -5,6 +5,8 @@ import REQ_STATES from '../../utils/enums/requestStates'
 import st from './MakeRequests.module.css'
 import PendingRequest from './components/PendingRequest/PendingRequest'
 import RequestSalaryAdvance from './components/RequestSalaryAdvance/RequestSalaryAdvance'
+import Spinner from '../../components/Spinner/Spinner'
+import ConfirmCard from '../../components/ConfirmCard/ConfirmCard'
 
 const FS = {
     WAITING:'waiting',
@@ -19,7 +21,7 @@ const pendingReq = {
 }
 
 const MakeRequests = ({requestType}) => {
-    const [fetchState, setfetchState] = useState(FS.PENDING_REQUEST)
+    const [fetchState, setFetchState] = useState(FS.PENDING_REQUEST)
     const [requestData, setRequestData] = useState(pendingReq)
   return (
     <div className={st.container}>
@@ -31,7 +33,13 @@ const MakeRequests = ({requestType}) => {
                     <RequestDayOff/>
                 :   <RequestSalaryAdvance/>
             :fetchState === FS.ERROR ?
-            <div>err</div>
+                <div className={st.errorContainer}>
+                    <ConfirmCard 
+                        info={'Un error ha ocurrido, revise su conexión a internet y vuelva a intentarlo'}
+                        buttonText={'Reintentar'}
+                        nextState={()=>setFetchState(FS.IDLE)}
+                    />
+                </div>
             :null
         }
     </div>

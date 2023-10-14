@@ -7,62 +7,42 @@ import { getDoc } from 'firebase/firestore'
 import ReportList from './components/ReportList/ReportList'
 import Spinner from '../../components/Spinner/Spinner'
 import ConfirmCard from '../../components/ConfirmCard/ConfirmCard'
+import fetchReports from './fetchReports'
 
-const report = {
-    username: 'jose maria',
-    timestamp: 'dd/mm/aaaa',
-    debit:[
-        {monto: 123},
-        {monto: 123},
-        {monto: 123},
-        {monto: 123},
-    ],
-    credit:[
-        {monto:1231, ticket:123123},
-        {monto:1231, ticket:123123},
-        {monto:1231, ticket:123123},
-        {monto:1231, ticket:123123},
-    ],
-    transfer:[
-        {monto: 12312, transf:43434},
-        {monto: 12312, transf:43434},
-    ],
-    closes: {mp:111, payway:123, prisma:21321}
+const parseDate = (dateString) => {
+    const date = new Date(dateString)
+    const parsedDate = date.toLocaleDateString('en-GB');
+    return  `${parsedDate}`  
 }
 
-const report2 = {
-    username: 'pepe',
-    timestamp: '15/07/23 17:30',
-    debit:[
-        {monto: 123},
-        {monto: 123},
-        {monto: 123},
-        {monto: 123},
-    ],
-    credit:[
-        {monto:1231, ticket:123123},
-        {monto:1231, ticket:123123},
-        {monto:1231, ticket:123123},
-        {monto:1231, ticket:123123},
-    ],
-    transfer:[
-        {monto: 12312, transf:43434},
-        {monto: 12312, transf:43434},
-    ],
-    closes: {mp:111, payway:123, prisma:21321}
-}
 
 const HandleCashflowReports = () => {
     const [reports, setReports] = useState(null)
-    const [fetchState, setFetchState] = useState(FS.ERROR)
-
-   
+    const [fetchState, setFetchState] = useState(FS.IDLE)
     
+    const fetchReportsHandler = async(selectedDate) => {
+        const probe = selectedDate.replace(/-/g, '/') // cambia el guion por / para ajustar la zona horaria
+        if(selectedDate === null){  
+            alert('seleccione una fecha válida')
+            return
+        } 
+        console.log( probe, ' ', new Date(probe));
+        return
+        setFetchState(FS.FETCHING)
+        const query = await fetchReports()
+        if(query.error){
+            setFetchState(FS.ERROR)
+        }
+        else{
+            setReports(query)
+            setFetchState(FS.SUCSESS)
+        }
+    }
 
   return (
     <div className={st.spacer}>
         <div className={st.container}>  
-            <SearchReports/>
+            <SearchReports search={(selectedDate) => fetchReportsHandler(selectedDate)}/>
             {
                 fetchState === FS.FETCHING ?
                 <div className={st.spinnerContainer}>

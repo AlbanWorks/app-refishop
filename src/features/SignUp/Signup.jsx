@@ -20,7 +20,7 @@ const Signup = () => {
            createUserDocument(userCredential.user.uid)
         })
         .catch((error) => {
-          alert(error)//pulir
+          alert('Ocurrió un error al intentar crear su cuenta, por favor notifíquelo: '+ error)//pulir
         });
     }
     const createUserDocument = async (uid) => {
@@ -31,7 +31,7 @@ const Signup = () => {
             await setDoc(doc(db, 'nuevos', uid), user);
         } 
         catch (error) {
-            alert(error)//pulir
+            alert('Ocurrió un error al intentar crear su cuenta, por favor notifíquelo: ' + error)//pulir
         }
     }
 

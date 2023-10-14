@@ -9,6 +9,7 @@ import SECTIONS from './utils/enums/sections'
 import FS from '../../utils/enums/fetchStates'
 import ConfirmCard from '../../components/ConfirmCard/ConfirmCard'
 import sendReport from './utils/methods/sendReport'
+import Spinner from '../../components/Spinner/Spinner'
 
 const MakeCashflowReports = ({userData}) => {
     const [section, setSection] = useState(SECTIONS.DEBIT)
@@ -64,21 +65,24 @@ const MakeCashflowReports = ({userData}) => {
                         setCloses={(value)=> setCloses(value)}
                     />
             }
-            <div className={st.inferiorModule}>
+        </div>
+        <div className={st.inferiorModule}>
                 {
                     fetchState === FS.IDLE ?
                         <ConfirmCard 
                             info={'Revise la informacion antes de enviarla'}
                             buttonText={'Enviar'} 
-                            nextState={HandleSendReport}
+                            nextState={HandleSendReport}                            
                         />
                     :fetchState === FS.FETCHING ?
-                        <div>spinner</div>
+                        <div className={st.spinnerContainer}>
+                            <Spinner/>
+                        </div>
                     :fetchState === FS.ERROR ?
                         <ConfirmCard 
                             info={'Ha ocurrido un error, intentelo nuevamente'}
                             buttonTextt={'Aceptar'} 
-                            nextState={()=>setFetchState(FS.IDLE)}
+                            nextState={()=>setFetchState(FS.IDLE)}                            
                         />
                     :
                         <ConfirmCard 
@@ -88,7 +92,6 @@ const MakeCashflowReports = ({userData}) => {
                         />
                 }
             </div>
-        </div>
     </div>
   )
 }

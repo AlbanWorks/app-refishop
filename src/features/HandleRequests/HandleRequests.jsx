@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import REQ_TYPES from '../../utils/enums/requestTypes'
 import st from './HandleRequests.module.css'
 import Request from './components/Request/Request'
 import FS from '../../utils/enums/fetchStates'
+import Spinner from '../../components/Spinner/Spinner'
 
 
 const requestProvisional = [
@@ -24,8 +25,19 @@ const requestProvisional = [
     },
 ]
 const HandleRequests = () => {
-    const [fetchState, setfetchState] = useState(FS.SUCSESS)
-    const [requests, setRequests] = useState(requestProvisional)
+    const [fetchState, setFetchState] = useState(FS.IDLE)
+    const [requests, setRequests] = useState(null)
+
+    useEffect(() => {
+      fetchRequests()
+    }, [])
+
+    const fetchRequests = async () => {
+        setFetchState(FS.FETCHING)
+        setRequests( requestProvisional)
+        setFetchState(FS.SUCSESS)
+    }
+    
 
   return (
     <div className={st.container}> 
@@ -35,8 +47,17 @@ const HandleRequests = () => {
                 <Request key={index} request={request}/>
             )
         :fetchState === FS.ERROR ?
-        <div>err</div>
-        :null
+            <div className={st.errorContainer}>
+                <ConfirmCard 
+                    info={'Un error ha ocurrido al buscar los pedidos de la base de datos, revise su conexión a internet y vuelva a intentarlo'}
+                    buttonText={'Aceptar'}
+                    nextState={()=>setFetchState(FS.IDLE)}
+                />
+            </div>
+        : 
+            <div className={st.spinnerContainer}>
+                <Spinner/>
+            </div>
     }
     </div>
   )

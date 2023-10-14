@@ -6,10 +6,10 @@ const sendReport = async ({debit,credit,transfer,closes,userData}) => {
         timestamp: new Date(),
         username: userData.username,
         userid: userData.id,
-        debit,
-        credit,
-        transfer,
-        closes
+        debit : removeIds(debit),
+        credit: removeIds(credit),
+        transfer: removeIds(transfer),
+        closes: removeIds([closes])
     }
     try{
         const sendReport = await addDoc(collection(db, 'reportes'), report);
@@ -18,6 +18,12 @@ const sendReport = async ({debit,credit,transfer,closes,userData}) => {
     catch(err){
         return{error:err}
     }
+}
+
+const removeIds = (arrayOfObjects) => {
+    let arrayObObjectsClone = [...arrayOfObjects]
+    arrayObObjectsClone.forEach(obj => delete obj.id);
+    return arrayObObjectsClone
 }
 
 export default sendReport

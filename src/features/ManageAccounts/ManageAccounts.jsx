@@ -5,11 +5,13 @@ import NewAccount from './components/NewAccount/NewAccount'
 import {db} from '../../services/firebase/firebaseConfig'
 import { collection, getDocs } from "firebase/firestore";
 import FS from '../../utils/enums/fetchStates'
+import Spinner from '../../components/Spinner/Spinner'
+import ConfirmCard from '../../components/ConfirmCard/ConfirmCard'
 
 
 
 const ManageAccounts = () => {
-    const [fetchState, setfetchState] = useState(FS.FETCHING)
+    const [fetchState, setFetchState] = useState(FS.FETCHING)
     const [employees, setEmployees] = useState([])
     const [newAccounts, setNewAccounts] = useState([])
 
@@ -27,18 +29,18 @@ const ManageAccounts = () => {
                 user.id = doc.id
                 users.push(user)
             });
-            setfetchState(FS.SUCSESS)
+            setFetchState(FS.SUCSESS)
             if(docName === 'empleados')setEmployees(users)
             else if (docName === 'nuevos') setNewAccounts(users)
         }
         catch(error){
-            setfetchState(FS.ERROR)
+            setFetchState(FS.ERROR)
            alert(error)//pulir
         }
     }
 
     const refresh = () => {
-        setfetchState(FS.FETCHING)
+        setFetchState(FS.FETCHING)
         fetchUsers('empleados')
         fetchUsers('nuevos')
     }
@@ -63,9 +65,17 @@ const ManageAccounts = () => {
                     }
                 </>
             :fetchState === FS.ERROR ?
-                <div>err</div>
+                <div className={st.errorContainer}>
+                    <ConfirmCard 
+                        info={'Error al traer las cuentas desde la base de datos, revise su conexión y vuelva a intentarlo'}
+                        buttonText={'Reintentar'} 
+                        nextState={refresh}                            
+                    />
+                </div>
             : 
-                <div>SPINNER</div>
+                <div className={st.spinnerContainer}>
+                    <Spinner/>
+                </div>
         }
     </div>
   )
