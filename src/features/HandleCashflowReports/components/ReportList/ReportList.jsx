@@ -28,7 +28,7 @@ const ReportList = ({reports}) => {
                     <Report 
                         title={'Cierres'} 
                         colTitles={['Payway', 'Prisma', 'Mercado Pago']} 
-                        sectionData={[report.closes]}
+                        sectionData={report.closes}
                     />
 
                 </div>

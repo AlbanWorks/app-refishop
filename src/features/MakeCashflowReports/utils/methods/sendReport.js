@@ -4,6 +4,7 @@ import { collection, addDoc} from "firebase/firestore";
 const sendReport = async ({debit,credit,transfer,closes,userData}) => {
     const report = {
         timestamp: new Date(),
+        date: parseDate(),
         username: userData.username,
         userid: userData.id,
         debit : removeIds(debit),
@@ -18,6 +19,14 @@ const sendReport = async ({debit,credit,transfer,closes,userData}) => {
     catch(err){
         return{error:err}
     }
+}
+
+const parseDate = () => {
+    const date = new Date()
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate()
+    return  `${year}/${month}/${day}`  
 }
 
 const removeIds = (arrayOfObjects) => {

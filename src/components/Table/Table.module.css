@@ -11,14 +11,15 @@
     margin: 10px;
 }
 .columnTitle{
-    background-color: var(--primary);
+    background-color: var(--possitive);
     color: var(--clear);
-    height: 40px;
+    height: 30px;
+    font-size: 0.9em;
     box-sizing: border-box;
     padding-left: 10px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     border-radius: var(--borderRadius);
     box-shadow: var(--boxShadow);
 }

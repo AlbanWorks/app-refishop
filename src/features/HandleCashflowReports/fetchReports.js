@@ -1,3 +1,8 @@
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../../services/firebase/firebaseConfig";
+
+
+
 const report = {
     username: 'jose maria',
     timestamp: 'dd/mm/aaaa',
@@ -42,8 +47,21 @@ const report2 = {
     closes: {mp:111, payway:123, prisma:21321}
 }
 
-const fetchReports = async() => {
-    return [report, report2]
+const fetchReports = async (selectedDate) => {
+    try{
+        const q = query(collection(db, 'reportes'), where('date', "==", selectedDate));
+        const querySnapshot = await getDocs(q);
+        let docs =[]
+        querySnapshot.forEach((doc) => {
+            docs.push(doc.data())
+        });
+        return docs
+    }
+    catch(error){
+        return{error}
+    }
+    //return [report, report2]
 }
+
 
 export default fetchReports

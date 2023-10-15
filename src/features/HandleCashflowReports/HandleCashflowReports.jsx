@@ -9,27 +9,76 @@ import Spinner from '../../components/Spinner/Spinner'
 import ConfirmCard from '../../components/ConfirmCard/ConfirmCard'
 import fetchReports from './fetchReports'
 
-const parseDate = (dateString) => {
-    const date = new Date(dateString)
-    const parsedDate = date.toLocaleDateString('en-GB');
-    return  `${parsedDate}`  
-}
+const report = [{
+    username: 'jose maria',
+    timestamp: 'dd/mm/aaaa',
+    debit:[
+        {monto: 123},
+        {monto: 123},
+        {monto: 123},
+        {monto: 123},
+    ],
+    credit:[
+        {monto:1231, ticket:123123},
+        {monto:1231, ticket:123123},
+        {monto:1231, ticket:123123},
+        {monto:1231, ticket:123123},
+    ],
+    transfer:[
+        {monto: 12312, transf:43434},
+        {monto: 12312, transf:43434},
+    ],
+    closes: {mp:111, payway:123, prisma:21321}
+}]
 
+const rrreport = [
+    {
+      username: "Santiago Lizardo",
+      credit: [
+        {
+          monto: "123",
+          ticket: "123"
+        }
+      ],
+      closes: [
+        {
+          mp: null,
+          prisma: "123",
+          payway: "1231",
+          ml: "23"
+        }
+      ],
+      transfer: [
+        {
+          monto: "0123",
+          transf: 0,
+          ticket: "123"
+        }
+      ],
+      debit: [
+        {
+          monto: "123"
+        }
+      ],
+      date: "2023/10/15",
+      userid: "8r6mkCXE3sdlL6wVplpPEvJ0gWJ3",
+      timestamp: {
+        seconds: 1697381382,
+        nanoseconds: 415000000
+      }
+    }]
 
 const HandleCashflowReports = () => {
     const [reports, setReports] = useState(null)
     const [fetchState, setFetchState] = useState(FS.IDLE)
     
     const fetchReportsHandler = async(selectedDate) => {
-        const probe = selectedDate.replace(/-/g, '/') // cambia el guion por / para ajustar la zona horaria
         if(selectedDate === null){  
             alert('seleccione una fecha válida')
             return
         } 
-        console.log( probe, ' ', new Date(probe));
-        return
         setFetchState(FS.FETCHING)
-        const query = await fetchReports()
+        const query = await fetchReports(selectedDate)
         if(query.error){
             setFetchState(FS.ERROR)
         }

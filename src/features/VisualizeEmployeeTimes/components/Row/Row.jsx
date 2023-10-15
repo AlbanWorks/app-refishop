@@ -11,7 +11,6 @@ const parseDate = (dateString) => {
 
 const Row = ({item}) => {
     
-
   return (
     <div className={st.container}>
         <p className={st.date}>{parseDate(item.date)}</p>

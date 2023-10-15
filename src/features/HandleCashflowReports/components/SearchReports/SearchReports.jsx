@@ -5,11 +5,16 @@ import { Button, VARIANTS } from '../../../../components/Button/Button'
 
 const SearchReports = ({search}) => {
         const [date, setDate] = useState(null)
+
+        const handleDate = (value) => {
+            const localTimeDate = value.replace(/-/g, '/')
+            setDate(localTimeDate)
+        }
         
   return ( 
     <div className={st.searchReports}>
         <div className={st.dateContainer}>
-            <DateInput  change={(value)=> setDate(value)}/>
+            <DateInput  change={(value)=> handleDate(value)}/>
         </div>
         <div className={st.buttonContainer}>
             <Button 
