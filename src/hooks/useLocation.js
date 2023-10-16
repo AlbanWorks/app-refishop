@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 const useLocation = () => {
   const [location, setLocation] = useState({ latitude: null, longitude: null });
-  const [trigger, setTrigger] = useState(false)
 
   useEffect(() => {
-    if(trigger){
+    
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
               (position) => {
@@ -14,23 +13,22 @@ const useLocation = () => {
                 setLocation({ latitude, longitude });
               },
               (error) => {
-                console.error("Error al obtener la ubicación: ", error);
+                alert('No se pudo obtener la ubicacion, por favor infórmalo a un administrador pues tu ubicación se mostrará indefinida, puedes capturar la pantalla ', error)
               }
             );
         } 
         else {
-            console.error("Geolocalización no está soportada en tu navegador.");
+            alert('Tu navegador no soporta geolocalización, por favor infórmalo a un administrador')
+            
         }
-        setTrigger(false)
-    }
-  }, [trigger]);
+       
+    
+  }, []);
 
-  const getLocation = () => {
-    setTrigger(true)
-  }
+
   
 
-  return {location, getLocation}
+  return {location}
 };
 
 export default useLocation;

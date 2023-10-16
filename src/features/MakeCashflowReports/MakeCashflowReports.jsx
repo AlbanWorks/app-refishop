@@ -10,6 +10,7 @@ import FS from '../../utils/enums/fetchStates'
 import ConfirmCard from '../../components/ConfirmCard/ConfirmCard'
 import sendReport from './utils/methods/sendReport'
 import Spinner from '../../components/Spinner/Spinner'
+import useLocation from '../../hooks/useLocation'
 
 const MakeCashflowReports = ({userData}) => {
     const [section, setSection] = useState(SECTIONS.DEBIT)
@@ -18,6 +19,7 @@ const MakeCashflowReports = ({userData}) => {
     const [transfer, setTransfer] = useState([])
     const [closes, setCloses] = useState({prisma:null, payway:null, mp:null })
     const [fetchState, setFetchState] = useState(FS.IDLE)
+    const {location} = useLocation()
 
     useEffect(() => {
         //previene al usuario de recargar la pagina y perder el progreso
@@ -33,7 +35,7 @@ const MakeCashflowReports = ({userData}) => {
 
     const HandleSendReport = async () => {
         setFetchState(FS.FETCHING)
-        const query = await sendReport({debit,credit,transfer,closes,userData})
+        const query = await sendReport({debit,credit,transfer,closes,userData, location})
         if(query.error) setFetchState(FS.ERROR)
         else setFetchState(FS.SUCSESS)
     }

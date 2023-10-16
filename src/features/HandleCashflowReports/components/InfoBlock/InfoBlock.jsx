@@ -1,5 +1,6 @@
 import React from 'react'
 import st from './InfoBlock.module.css'
+import LocationButton from '../../../../components/LocationButton/LocationButton'
 
 const InfoBlock = ({data}) => {
 
@@ -15,7 +16,13 @@ const InfoBlock = ({data}) => {
     <div className={st.container}>
         <span className={st.infoPiece}>{data.username}</span>
         <span className={st.infoPiece}>{parseDate(data.timestamp)}</span>
-        <button>location</button>
+        <div className={st.locationButtonContainer}>
+            <LocationButton 
+                latitude={data.location.latitude} 
+                longitude={data.location.longitude}
+            />
+        </div>
+        
     </div>
   )
 }

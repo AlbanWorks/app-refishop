@@ -1,7 +1,7 @@
 import { db } from "../../../../services/firebase/firebaseConfig";
 import { collection, addDoc} from "firebase/firestore";
 
-const sendReport = async ({debit,credit,transfer,closes,userData}) => {
+const sendReport = async ({debit,credit,transfer,closes,userData,location}) => {
     const report = {
         timestamp: new Date(),
         date: parseDate(),
@@ -10,7 +10,8 @@ const sendReport = async ({debit,credit,transfer,closes,userData}) => {
         debit : removeIds(debit),
         credit: removeIds(credit),
         transfer: removeIds(transfer),
-        closes: removeIds([closes])
+        closes: removeIds([closes]),
+        location
     }
     try{
         const sendReport = await addDoc(collection(db, 'reportes'), report);
