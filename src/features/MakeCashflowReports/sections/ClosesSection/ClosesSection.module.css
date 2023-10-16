@@ -1,6 +1,7 @@
 .container{
     display: flex;
     flex-direction: column;
+    padding: 10px;
 }
 .subtitle{
     font-size: 0.9em;

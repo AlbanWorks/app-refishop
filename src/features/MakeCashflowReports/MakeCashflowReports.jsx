@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import st from './MakeCashflowReports.module.css'
 import DebitSection from './sections/DebitSection/DebitSection'
 import CreditSection from './sections/CreditSection/CreditSection'
@@ -19,6 +19,17 @@ const MakeCashflowReports = ({userData}) => {
     const [closes, setCloses] = useState({prisma:null, payway:null, mp:null })
     const [fetchState, setFetchState] = useState(FS.IDLE)
 
+    useEffect(() => {
+        //previene al usuario de recargar la pagina y perder el progreso
+        const handleBeforeUnload = (e) => {
+          e.preventDefault();
+          e.returnValue = ''; 
+        };
+        window.addEventListener('beforeunload', handleBeforeUnload);
+        return () => {
+          window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+      }, []);
 
     const HandleSendReport = async () => {
         setFetchState(FS.FETCHING)

@@ -23,14 +23,12 @@ const CreditSection = ({credit, setCredit}) => {
                             <BasicInput 
                                 inputType={'number'} 
                                 placeholder={'monto'}
-                                defbalue={item.monto}
                                 change={(value)=>handleChange(index,'monto', value)}
                             />
                         </div>
                         <div className={st.inputContainer}>
                             <BasicInput 
                                 inputType={'number'} 
-                                defbalue={item.ticket}
                                 placeholder={'ticket factura'}
                                 change={(value)=>handleChange(index,'ticket', value)}
                             />

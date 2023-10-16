@@ -6,6 +6,7 @@ import ROLES from '../../../../utils/enums/roles'
 import st from './Account.module.css'
 import {db} from '../../../../services/firebase/firebaseConfig'
 import { doc, setDoc,deleteDoc } from "firebase/firestore";
+import Spinner from '../../../../components/Spinner/Spinner'
 
 const FS = {
     IDLE: 'idle',
@@ -66,7 +67,7 @@ const Account = ({employee, refresh}) => {
             {
                 fetching ?
                     <div className={st.inferiorModule}>
-                        spinner
+                        <Spinner/>
                     </div>
                 :
                     <div className={st.inferiorModule}>

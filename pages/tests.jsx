@@ -1,21 +1,19 @@
 import React,{useState,useEffect} from "react"
-import Table from "../src/components/Table/Table"
-
-const data = [
-    {a:'a1', b: 'b1'},
-    {a:'a2', b: 'b2'},
-    {a:'a3', b: 'b3'},
-    {a:'a4', b: 'b4'},
-    {a:'a5', b: 'b5'},
-    {a:'a6', b: 'b6'},
-]
+import useLocation from "../src/hooks/useLocation"
 
 export default function Tests() {
+    const {location, getLocation} = useLocation()
+    useEffect(() => {
+        console.error('probando console error')
+      console.log('from page', location);
+    }, [location])
     
+
   return (
    <div>
-        <Table titles={['aes', 'beses']} data={data}/>
-        
+        <button onClick={getLocation}> preess me uh</button>
+
+        <a href={`https://www.google.com/maps?q=${location.latitude},${location.longitude}`}  target={"_blank"}> ir </a>
    </div>
   )
 }

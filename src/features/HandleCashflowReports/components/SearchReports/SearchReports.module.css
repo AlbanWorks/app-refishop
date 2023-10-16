@@ -1,6 +1,7 @@
 .searchReports{
     width: 100%;
     background-color: var(--container);
+    box-shadow: var(--boxShadow);
     border-radius: var(--borderRadius);
     box-sizing: border-box;
     height: 60px;

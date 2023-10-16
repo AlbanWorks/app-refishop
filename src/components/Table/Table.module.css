@@ -11,8 +11,8 @@
     margin: 10px;
 }
 .columnTitle{
-    background-color: var(--possitive);
-    color: var(--clear);
+    background-color: var(--clear);
+    color: var(--dark);
     height: 30px;
     font-size: 0.9em;
     box-sizing: border-box;

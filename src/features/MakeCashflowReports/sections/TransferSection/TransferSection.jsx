@@ -22,7 +22,6 @@ const TransferSection = ({transfer, setTransfer}) => {
                         <div className={st.inputContainer}>
                             <BasicInput 
                                 inputType={'number'} 
-                                defbalue={item.monto}
                                 placeholder={'monto'}
                                 change={(value)=>handleChange(index,'monto', value)}
                             />
@@ -30,7 +29,6 @@ const TransferSection = ({transfer, setTransfer}) => {
                         <div className={st.inputContainer}>
                             <BasicInput 
                                 inputType={'number'} 
-                                defbalue={item.ntrans}
                                 placeholder={'n° transf.'}
                                 change={(value)=>handleChange(index,'ticket', value)}
                             />

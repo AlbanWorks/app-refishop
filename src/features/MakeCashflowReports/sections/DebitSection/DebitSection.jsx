@@ -22,7 +22,6 @@ const DebitSection = ({debit, setDebit}) => {
                     <div className={st.inputContainer}>
                         <BasicInput 
                             inputType={'number'} 
-                            defbalue={item.monto}
                             placeholder={'monto'}
                             change={(value)=> handleChange(index,'monto', value)}/>
                     </div>

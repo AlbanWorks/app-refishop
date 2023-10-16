@@ -34,8 +34,7 @@ const NewAccount = ({employee, refresh}) => {
             refresh()
         } 
         catch (error) {
-            console.log('error al guardar usuario' + error);
-            alert(error)//pulir
+            alert('Hubo un error al añadir al nuevo usuario, por favor repórtelo '+ error)//pulir
             setSaveButtonText('Aceptar Usuario')
         }
     }
