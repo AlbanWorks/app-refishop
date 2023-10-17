@@ -1,20 +1,17 @@
 import React from 'react'
 import Row from '../Row/Row'
+import TT from '../../../../utils/enums/TimeTypes'
 import st from './Column.module.css'
 
- const CT ={
-    ENTRY:'entry',
-    EXIT: 'exit'
-}
 
 const Column = ({columnType , data}) => {
     
   return (
     <div className={st.container}>
         <header 
-            className={columnType === CT.ENTRY ? st.headerEntry : st.headerExit}
+            className={columnType === TT.ENTRY ? st.headerEntry : st.headerExit}
         >
-            {columnType === CT.ENTRY ? 'Horarios de Entrada' : 'Horarios de Salida'}
+            {columnType === TT.ENTRY ? 'Horarios de Entrada' : 'Horarios de Salida'}
         </header>
         
        {
@@ -26,4 +23,4 @@ const Column = ({columnType , data}) => {
   )
 }
 
-export {Column, CT}
+export default Column

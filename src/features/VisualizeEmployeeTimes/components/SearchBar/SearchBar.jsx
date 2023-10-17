@@ -9,15 +9,12 @@ const SearchBar = ({list, select}) => {
     <div className={st.container}>
         <select 
             className={st.select}
-            
         >
             {
                 list.map((employee, index)=>
                     <option key={index} value={employee.id}>{employee.username}</option>
                 )
-            }
-                
-                
+            }        
         </select>
         <div className={st.buttonContainer}>
             <Button text={'Buscar'} variant={VARIANTS.PRIMARY} click={()=>{}}/>

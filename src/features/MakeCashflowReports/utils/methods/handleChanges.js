@@ -16,7 +16,7 @@ const addRow = (data, section) => {
         sectionClone.push({id:uuidv4(), monto:null, ticket:null})
     } 
     else if (section === SECTIONS.TRANSFER) {
-        sectionClone.push({id:uuidv4(), monto:0, transf:0})
+        sectionClone.push({id:uuidv4(), monto:null, transf:null})
     } 
     return sectionClone
 }

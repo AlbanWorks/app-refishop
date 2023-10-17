@@ -1,5 +1,5 @@
 import React from "react"
-import {CheckInOut} from "../CheckInOut/CheckInOut"
+import CheckTimes from "../CheckTimes/CheckTimes"
 import MakeRequests from "../MakeRequests/MakeRequests"
 import HandleRequests from '../HandleRequests/HandleRequests'
 import SECTIONS from "../../utils/enums/sections"
@@ -16,7 +16,7 @@ const SectionSelector = ({section, userData}) => {
     <>
         {
             section === SECTIONS.CHECK_ENTRY_AND_EXIT ?
-                <CheckInOut/>
+                <CheckTimes userData={userData}/>
             :section === SECTIONS.REQUEST_FREE_DAY ?
                 <MakeRequests requestType={REQ_TYPES.FREE_DAY}/>
             :section === SECTIONS.REQUEST_ADVANCE ?

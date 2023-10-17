@@ -1,13 +1,10 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import SearchBar from './components/SearchBar/SearchBar'
-import {Column, CT} from './components/Column/Column'
+import Column from './components/Column/Column'
+import TT from '../../utils/enums/TimeTypes'
 import st from './VisualizeEmployeeTimes.module.css'
+import FS from '../../utils/enums/fetchStates'
 
-const FS = {
-    WAITING:'waiting',
-    SUCSESS:'sucsess',
-    ERROR:'error'
-}
 const empEntryTimes = [
     {date:'August 19, 2023 19:19:30', location:'loc'},
     {date:'August 19, 2023 19:17:32', location:'loc'},
@@ -29,23 +26,26 @@ const ListaEmpleados = [
 //barra de busqueda, alli se selecciona uno y se traen los datos de ese empleado
 
 const VisualizeEmployeeTimes = () => {
-    const [fetchState, setFetchState] = useState(FS.SUCSESS)
-    const [employeeList, setEmployeeList] = useState(ListaEmpleados)
-    const [times, setTimes] = useState({empEntryTimes, empExitTimes})
+    const [fetchState, setFetchState] = useState(FS.IDLE)
+    const [employee, setEmployee] = useState(null)
+    const [times, setTimes] = useState(null)
     
   return (
     <div className={st.container}>
         <div className={st.box}>
-            <SearchBar list={employeeList} select={()=>{}}/>
+        {/* <SearchBar /> */}
         {
             fetchState === FS.SUCSESS ?
             <div className={st.table}>
-                <Column columnType={CT.ENTRY} data={times.empEntryTimes}/>
-                <Column columnType={CT.EXIT} data={times.empExitTimes}/>
+                <Column columnType={TT.ENTRY} data={times.empEntryTimes}/>
+                <Column columnType={TT.EXIT} data={times.empExitTimes}/>
             </div>
             :fetchState === FS.ERROR ?
-            <div>error</div>
-            :null
+            <div>
+
+            </div>
+            : null
+                
         }
         </div>
     </div>
