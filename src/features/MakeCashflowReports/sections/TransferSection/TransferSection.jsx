@@ -10,7 +10,7 @@ const TransferSection = ({transfer, setTransfer}) => {
     
     const handleChange = (index, propname, value) => {
         let sectionClone = [...transfer]
-        sectionClone[index][propname] = value
+        sectionClone[index][propname] = parseFloat(value) 
         setTransfer(sectionClone)
     }
 

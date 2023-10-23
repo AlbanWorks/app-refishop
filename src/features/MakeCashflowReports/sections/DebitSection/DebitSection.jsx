@@ -10,7 +10,7 @@ const DebitSection = ({debit, setDebit}) => {
 
     const handleChange = (index, propname, value) => {
         let sectionClone = [...debit]
-        sectionClone[index][propname] = value
+        sectionClone[index][propname] = parseFloat(value)  
         setDebit(sectionClone)
     }
 

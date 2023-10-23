@@ -6,7 +6,7 @@ const ClosesSection = ({closes, setCloses}) => {
 
     const handleChange = (propname, value) => {
         let sectionClone = {...closes}
-        sectionClone[propname] = value
+        sectionClone[propname] = parseFloat(value) 
         setCloses(sectionClone)
     }
 

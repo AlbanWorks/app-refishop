@@ -10,7 +10,7 @@ const CreditSection = ({credit, setCredit}) => {
     
     const handleChange = (index, propname, value) => {
         let sectionClone = [...credit]
-        sectionClone[index][propname] = value
+        sectionClone[index][propname] = parseFloat(value) 
         setCredit(sectionClone)
     }
 
