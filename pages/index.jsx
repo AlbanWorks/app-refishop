@@ -7,12 +7,13 @@ import SectionSelector from "../src/features/SectionSelector/SectionSelector"
 import Spinner from "../src/components/Spinner/Spinner"
 
 export default function Home() {
+    
     const [selectedSection, setSelectedSection] = useState(SECTIONS.CHECK_ENTRY_AND_EXIT)
     const {userData, loginState, LOGIN_STATE} = useAuth()
     const router = useRouter()
 
     useEffect(() => {
-      if(loginState === LOGIN_STATE.NO_USER) router.push('/login')
+      if(loginState === LOGIN_STATE.NO_USER) router.push('/sesion')
     }, [loginState])
     
   return (

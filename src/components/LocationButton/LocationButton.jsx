@@ -5,7 +5,7 @@ const LocationButton = ({latitude, longitude}) => {
 
     const redirectToGoogleMaps = () => {
         if(window !== undefined){
-            window.open(`https://www.google.com/maps?q=${latitude},${longitude}`, '_blank');
+            window.open(`http://www.google.com/maps/place/${latitude},${longitude}`, '_blank');
         }
     }
 
