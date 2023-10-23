@@ -29,9 +29,9 @@ const MakeCashflowReports = ({userData}) => {
         };
         window.addEventListener('beforeunload', handleBeforeUnload);
         return () => {
-          window.removeEventListener('beforeunload', handleBeforeUnload);
+            window.removeEventListener('beforeunload', handleBeforeUnload);
         };
-      }, []);
+    }, []);
 
     const HandleSendReport = async () => {
         setFetchState(FS.FETCHING)

@@ -4,9 +4,7 @@
 .box{
     width: 100%;
     box-sizing: border-box;
-    background-color: var(--container);
     border-radius: var(--borderRadius);
-    padding: 10px;
 }
 .table{
     width: 100%;

@@ -8,8 +8,11 @@ const InfoBlock = ({data}) => {
         const date = new Date(firebaseTimestamp.seconds * 1000)
         const parsedDate = date.toLocaleDateString('en-GB');
         const hours = date.getHours()
-        const minutes = date.getMinutes();
-        return  `${parsedDate} ${hours}:${minutes}`  
+        const rawMinutes = date.getMinutes();
+        let minutes;
+        if(rawMinutes < 10) minutes = `0${rawMinutes}`
+        else minutes = rawMinutes
+        return  `${parsedDate} ${hours}:${minutes}`    
     }
 
   return (

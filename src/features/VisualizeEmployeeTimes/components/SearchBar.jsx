@@ -1,9 +1,17 @@
 import React,{useState} from 'react'
-import {Button, VARIANTS} from '../../../../components/Button/Button'
-import st from './SearchBar.module.css'
-import Spinner from '../../../../components/Spinner/Spinner'
+import {Button, VARIANTS} from '../../../components/Button/Button'
+import st from './EmpTimes.module.css'
+import Spinner from '../../../components/Spinner/Spinner'
 
 const SearchBar = ({employeeList, fetchTimes}) => {
+    const [emp, setEmp] = useState(null)
+
+    const handleSend = () => {
+        if(emp) fetchTimes(emp)
+    }
+    const selectEmployee = (index) => {
+        setEmp(employeeList[index])
+    }
     
   return (
     <div className={st.container}>
@@ -11,14 +19,14 @@ const SearchBar = ({employeeList, fetchTimes}) => {
             employeeList ?
             <select 
                 className={st.select}
-                onChange={(e)=>fetchTimes(e.target.value)}
+                onChange={(e)=>setEmp(employeeList[e.target.value])}
             >
-                  <option value={''} disabled selected hidden>Escoger</option>
+                  <option value={0} disabled selected hidden>Escoger</option>
                 {
                     employeeList.map((employee, index)=>
                         <option 
                             key={index} 
-                            value={employee.id}
+                            value={index}
                         >
                             {employee.username}
                         </option>
@@ -26,7 +34,7 @@ const SearchBar = ({employeeList, fetchTimes}) => {
                 }        
             </select>
         : 
-            <div className={st.spinnerContainer}>
+            <div>
                 <Spinner/>
             </div>
         }
@@ -34,7 +42,7 @@ const SearchBar = ({employeeList, fetchTimes}) => {
             <Button 
                 text={'Buscar'} 
                 variant={VARIANTS.PRIMARY} 
-                click={()=>{}}
+                click={handleSend}
             />
         </div>
     </div>
