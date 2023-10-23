@@ -15,19 +15,22 @@ const ClosesSection = ({closes, setCloses}) => {
         <label className={st.subtitle} >Cierre Prisma</label>
         <div className={st.inputContainer}>
             <BasicInput 
-                inputType={'number'} 
+                inputType={'number'}
+                defbalue={closes.prisma}
                 change={(value)=> handleChange('prisma', value)}/>
         </div>
         <label className={st.subtitle} >Cierre Payway</label>
         <div className={st.inputContainer}>
             <BasicInput 
                 inputType={'number'} 
+                defbalue={closes.payway}
                 change={(value)=> handleChange('payway', value)}/>
         </div>
         <label className={st.subtitle} >Cierre Mercado Pago</label>
         <div className={st.inputContainer}>
             <BasicInput 
                 inputType={'number'} 
+                defbalue={closes.ml}
                 change={(value)=> handleChange('ml', value)}/>
         </div>
     </div>   

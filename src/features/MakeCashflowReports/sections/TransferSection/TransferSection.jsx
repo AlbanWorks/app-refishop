@@ -23,6 +23,7 @@ const TransferSection = ({transfer, setTransfer}) => {
                             <BasicInput 
                                 inputType={'number'} 
                                 placeholder={'monto'}
+                                defbalue={transfer[index].monto}
                                 change={(value)=>handleChange(index,'monto', value)}
                             />
                         </div>
@@ -30,7 +31,8 @@ const TransferSection = ({transfer, setTransfer}) => {
                             <BasicInput 
                                 inputType={'number'} 
                                 placeholder={'n° transf.'}
-                                change={(value)=>handleChange(index,'ticket', value)}
+                                defbalue={transfer[index].transf}
+                                change={(value)=>handleChange(index,'transf', value)}
                             />
                         </div>
                         <DeleteButton deleteRow={()=>setTransfer(deleteRow(index, transfer))}/>

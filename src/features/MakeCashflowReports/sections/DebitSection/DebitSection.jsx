@@ -23,6 +23,7 @@ const DebitSection = ({debit, setDebit}) => {
                         <BasicInput 
                             inputType={'number'} 
                             placeholder={'monto'}
+                            defbalue={debit[index].monto}
                             change={(value)=> handleChange(index,'monto', value)}/>
                     </div>
                     <DeleteButton deleteRow={()=>setDebit(deleteRow(index, debit))}/>
