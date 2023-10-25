@@ -12,11 +12,11 @@ const Profile = ({data}) => {
         </span>
         <span className={st.employeeInfo}>
             <b>Rol Actual: </b> 
-            empleado
+            {data.role}
         </span>
         <span className={st.employeeInfo}>
             <b>Negocio Actual: </b> 
-            SABOR A CAMPO
+            {data.store}
         </span>
     </div>
   )

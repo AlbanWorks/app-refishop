@@ -21,12 +21,13 @@ export default function Home() {
         {
             loginState === LOGIN_STATE.USER && userData ?
                 <div className='pageContainer'>
-                    <Navbar userData={userData} selectOption={(value)=>setSelectedSection(value)}/>
-                    <SectionSelector section={selectedSection} userData={userData}/>
-                </div>
+                <Navbar userData={userData} selectOption={(value)=>setSelectedSection(value)}/>
+                <SectionSelector section={selectedSection} userData={userData}/>
+                </div> 
             :loginState === LOGIN_STATE.NEW_USER ?
-                <div>
-                    Informe al administrador para que verifique su cuenta y pueda acceder al sistema
+                <div className='blockedInfo'>
+                    <h3>Su cuenta está bloqueada</h3>
+                    <span>informe al administrador para que verifique su cuenta y pueda ingresar al sistema</span> 
                 </div>
             : 
                 <div className='spinnerContainer'>

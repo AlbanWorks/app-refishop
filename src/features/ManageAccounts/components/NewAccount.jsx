@@ -1,60 +1,55 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState} from 'react'
 import DropdownBox from '../../../components/DropdownBox/DropdownBox'
 import ROLES from '../../../utils/enums/roles'
 import Select from './Select'
 import st from '../ManageAccounts.module.css'
 import ActionButtons from './ActionButtons'
 import FS from '../../../utils/enums/fetchStates'
-import Profile from './Profile'
-import { updateAccount ,deleteAccount } from '../utils/methods/FetchAccounts'
-import { db } from '../../../services/firebase/firebaseConfig'
-import { doc, onSnapshot } from "firebase/firestore";
 import COL from '../utils/enums/collections'
+import { acceptUser ,deleteAccount } from '../utils/methods/FetchAccounts'
 
 const STORES=[
     'el pollo',
     'sabor a campo'
 ]
 
-const Account = ({employee, refresh}) => {
-    const [Employee, setEmployee] = useState(employee)
+const NewAccount = ({employee, refresh}) => {
     const [newRole, setNewRole] = useState(null)
     const [newStore, setNewStore] = useState(null)
     const [fetchState, setFetchState] = useState(FS.IDLE)
 
-    useEffect(() => {
-        const unsub = onSnapshot(doc(db, COL.EMPLEADOS, employee.id), (doc) => {
-            if(doc.data() !== undefined) setEmployee(doc.data())
-        })
-        return () => unsub()
-    }, [])
-
     const handleUpdate = async () => {
+        if(newRole === null || newStore === null){
+            alert('Necesita seleccionar el rol y el negocio del nuevo empleado')
+            return
+        }
         setFetchState(FS.FETCHING)
-        const query = await updateAccount(employee, newRole, newStore)
-        if(query.error)setFetchState(FS.ERROR)
+        const query = await acceptUser(employee, newRole, newStore)
+        if(query.error){
+            console.log(query.error);
+            setFetchState(FS.ERROR)
+        }
         else setFetchState(FS.SUCSESS)  
     }
 
     const handleDelete = async () => {
         if(!confirm('¿Está seguro de eliminar a este empleado? la accion es irreversible'))return
         setFetchState(FS.FETCHING)
-        const query = await deleteAccount(employee, COL.EMPLEADOS)
+        const query = await deleteAccount(employee, COL.NUEVOS)
         if(query.error) setFetchState(FS.ERROR)
         else setFetchState(FS.SUCSESS)
     }
 
   return (
     <div className={st.container}>
-        <DropdownBox  title={Employee.username} state={Employee.role}>
+        <DropdownBox  title={employee.username} state={'sin incorporar'}>
             <div className={st.account}>
-                <Profile data={Employee}/>
-                <label className={st.label}>Cambiar Rol</label>
+                <label className={st.label}>Seleccionar Rol</label>
                 <Select 
                     objectToMap={ROLES} 
                     action={(value)=>setNewRole(value)}
                 />
-                <label className={st.label}>Cambiar Negocio</label>
+                <label className={st.label}>Selecconar Negocio</label>
                 <Select 
                     objectToMap={STORES} 
                     action={(value)=>setNewStore(value)}
@@ -72,4 +67,4 @@ const Account = ({employee, refresh}) => {
   )
 }
 
-export default Account
+export default NewAccount

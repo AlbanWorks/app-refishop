@@ -25,3 +25,15 @@
     align-items: center;
     justify-content: center;
 }
+.blockedInfo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.blockedInfo span{
+   text-align: center;
+} 
