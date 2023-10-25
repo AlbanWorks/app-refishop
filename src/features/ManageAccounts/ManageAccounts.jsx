@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import Account from './components/Account/Account'
+import Account from './components/Account'
 import st from './ManageAccounts.module.css'
 import NewAccount from './components/NewAccount/NewAccount'
 import {db} from '../../services/firebase/firebaseConfig'
