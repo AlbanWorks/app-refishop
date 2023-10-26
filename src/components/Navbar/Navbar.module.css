@@ -1,6 +1,6 @@
-.navbar{
+.navbar, .navbarFixed{
     --navbarHeight: 60px;
-    position: relative;
+    z-index: 100;
     width: 100%;
     height: var(--navbarHeight);
     display: flex;
@@ -11,6 +11,12 @@
     padding: 10px;
     color: var(--clear);
     box-shadow: var(--boxShadow);
+}
+.navbar{
+    position: relative;
+}
+.navbarFixed{
+    position: fixed;
 }
 .profile{
     display: flex;
@@ -30,7 +36,7 @@
 .optionsOpen{
     z-index: 100;
     width: 100%;
-    height: 400px;
+    height: 100vh;
     background-color: var(--secondary);
     position: absolute;
     top: var(--navbarHeight);
@@ -48,7 +54,7 @@
     background: none;
     background-color: var(--secondary);
     width: 100%;
-    height: 40px;
+    height: 50px;
     text-align: start;
     padding-left: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);

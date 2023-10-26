@@ -25,6 +25,12 @@ const addRow = () => {
 
   return (
     <div className={st.transferContainer}>
+        <h3  className={st.transferTitle}>Transferencias</h3>
+        {
+            transfer.length === 0 ?
+            <span className={st.emptyTransferSpan}>(vacío)</span>
+            :null
+        }
         {
             transfer.map((item, index)=>
                 <div key={item.id} className={st.row}>

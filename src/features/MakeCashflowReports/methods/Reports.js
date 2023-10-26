@@ -1,3 +1,6 @@
+import { db } from "../../../services/firebase/firebaseConfig";
+import { collection, addDoc} from "firebase/firestore";
+
 const sendReport = async ({general,transfer,userData,location}) => {
     const report = {
         timestamp: new Date(),
@@ -35,10 +38,10 @@ const removeIds = (arrayOfObjects) => {
 const checkEmptyFields = ({general, transfer}) => {
     let emptyTransferItems = false;
     for (const property in general) {
-        if (nullOrEmpty(general[property])) emptyTransferItems = true
+        if (nullOrEmpty(general[property])) emptyTransferItems = true 
     }
     transfer.forEach(item => {
-        if(nullOrEmpty(item.monto) || nullOrEmpty(item.transfer)) emptyTransferItems = true;
+        if(nullOrEmpty(item.monto) || nullOrEmpty(item.transf)) emptyTransferItems = true;
     });
     if(emptyTransferItems) return {error: 'rellene o borre los campos vacíos'}
     return {sucsess: 'sucsess'}
@@ -48,4 +51,15 @@ const nullOrEmpty = (field) => {
     return (field === null || field === '' || isNaN(field))
 }
 
-export {sendReport, checkEmptyFields}
+const emptyGeneral = () => {
+    return{
+        cash:'',
+        debit:'',
+        credit:'',
+        prisma:'',
+        payway:'',
+        mercadopago:''
+    }
+}
+
+export {sendReport, checkEmptyFields, emptyGeneral}

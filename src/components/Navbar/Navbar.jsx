@@ -13,15 +13,18 @@ const Navbar = ({userData, selectOption}) => {
         setMenuOpen(false)
         selectOption(value)
     }
+    const handleOpenMenu = () => {
+        setMenuOpen(!menuOpen)
+    }
 
   return ( 
-    <div className={st.navbar}>
+    <div className={menuOpen ? st.navbarFixed : st.navbar}>
         <div className={st.profile}>
-            <ProfilePicture img={userData.profile_picture} diameter={'48px'}/>
+            <ProfilePicture img={userData.profile_picture} diameter={'45px'}/>
             <h3 className={st.emName}>{userData.username}</h3>
             <span className={st.position}>{`(${userData.role})`}</span>
         </div>
-        <HamburguerButton click={()=>setMenuOpen(!menuOpen)}/>
+        <HamburguerButton click={()=> setMenuOpen(!menuOpen)}/>
         <div className={menuOpen ? st.optionsOpen : st.optionsClosed}>
         {
             options.map((option, index)=>

@@ -39,6 +39,18 @@ margin-top: 10px;
     font-size: 0.9em;
     margin: 3px
 }
+.transferTitle{
+    width: 100%;
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: 200;
+}
+.emptyTransferSpan{
+    display: block;
+    font-size: 0.9em;
+    width: 100%;
+    text-align: center;
+}
 .addRowContainer{
     width: 100%;
     height: 60px;
@@ -48,11 +60,11 @@ margin-top: 10px;
 }
 .addRowButtonContainer{
     width: 100%;
-    height: 30px;
+    height: 35px;
 }
 .row{
     display: flex;
-    height: 30px;
+    height: 35px;
     width: 100%;    
     padding-bottom: 5px;
 }
@@ -61,7 +73,7 @@ margin-top: 10px;
     flex-grow: 1;
 }
 .deleteButtonContainer{
-    width: 30px;
-    min-width: 30px;
+    width: 35px;
+    min-width: 35px;
     height: 100%;
 }

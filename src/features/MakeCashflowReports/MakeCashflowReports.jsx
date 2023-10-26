@@ -4,20 +4,11 @@ import ReportUI from './components/ReportUI'
 import SendReport from './components/SendReport'
 import FS from '../../utils/enums/fetchStates'
 import useLocation from '../../hooks/useLocation'
-import {sendReport, checkEmptyFields} from './methods/Reports'
-
-const emptyGeneral = {
-    cash:null,
-    debit:null,
-    credit:null,
-    prisma:null,
-    payway:null,
-    mercadopago:null
-}
+import {sendReport, checkEmptyFields, emptyGeneral} from './methods/Reports'
 
 const MakeCashflowReports = ({userData}) => {
     const [fetchState, setFetchState] = useState(FS.IDLE)
-    const [general, setGeneral] = useState(emptyGeneral)
+    const [general, setGeneral] = useState(emptyGeneral())
     const [transfer, setTransfer] = useState([])
     const {location} = useLocation()
 
@@ -35,20 +26,20 @@ const MakeCashflowReports = ({userData}) => {
 
     const HandleSendReport = async () => {
         const check = checkEmptyFields({general,transfer})
+        console.log({general,transfer});
         if(check.error){
             alert(check.error)
             return
         }
-        return
         setFetchState(FS.FETCHING)
         const query = await sendReport({general,transfer,userData,location})
-        if(query.error) setFetchState(FS.ERROR)
+        if(query.error)setFetchState(FS.ERROR)
         else setFetchState(FS.SUCSESS)
     }
 
     const refresh = () => {
         setTransfer([])
-        setGeneral(emptyGeneral)
+        setGeneral(emptyGeneral())
         setFetchState(FS.IDLE)
     }
 

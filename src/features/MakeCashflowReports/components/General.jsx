@@ -12,12 +12,35 @@ const General = ({general, setGeneral}) => {
 
   return (
     <div className={st.general}>
-        <Input title ={'Efectivo'} handle={value=>handle('cash', value)}/>
-        <Input title ={'Débito'} handle={value=>handle('debit', value)}/>
-        <Input title ={'Crédito'} handle={value=>handle('credit', value)}/>
-        <Input title ={'Payway'} handle={value=>handle('payway', value)}/>
-        <Input title ={'Prisma'} handle={value=>handle('prisma', value)}/>
-        <Input title ={'Mercado Pago'} handle={value=>handle('mercadopago', value)}/>
+        <Input title ={'Efectivo'} 
+            handle={value=>handle('cash', value)}
+            defvalue={general.cash}
+        />
+        <Input 
+            title ={'Débito'} 
+            handle={value=>handle('debit', value)}
+            defvalue={general.debit}
+        />
+        <Input 
+            title ={'Crédito'} 
+            handle={value=>handle('credit', value)}
+            defvalue={general.credit}
+        />
+        <Input 
+            title ={'Payway'} 
+            handle={value=>handle('payway', value)}
+            defvalue={general.payway}
+        />
+        <Input 
+            title ={'Prisma'} 
+            handle={value=>handle('prisma', value)}
+            defvalue={general.prisma}
+        />
+        <Input 
+            title ={'Mercado Pago'} 
+            handle={value=>handle('mercadopago', value)}
+            defvalue={general.mercadopago}
+        />
     </div>
   )
 }

@@ -10,7 +10,7 @@ const SendReport = ({fetchState, HandleSendReport, setFetchState, refresh}) => {
        {
             fetchState === FS.IDLE ?
                 <ConfirmCard 
-                    info={'Llene los datos de General y Transferencias antes de enviar el reporte, revise que la informacion esté correcta.'}
+                    info={'Revise que la información sea correcta antes de enviar el reporte.'}
                     buttonText={'Enviar'} 
                     nextState={HandleSendReport}                            
                 />
@@ -20,8 +20,8 @@ const SendReport = ({fetchState, HandleSendReport, setFetchState, refresh}) => {
                 </div>
             :fetchState === FS.ERROR ?
                 <ConfirmCard 
-                    info={'Ha ocurrido un error, intentelo nuevamente.'}
-                    buttonTextt={'Aceptar'} 
+                    info={'Ha ocurrido un error, revise su conexión e intentelo nuevamente.'}
+                    buttonText={'Aceptar'} 
                     nextState={()=>setFetchState(FS.IDLE)}                            
                 />
             :

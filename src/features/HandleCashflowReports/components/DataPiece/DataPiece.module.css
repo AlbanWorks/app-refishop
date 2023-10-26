@@ -1,0 +1,17 @@
+.container{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+}
+.title{
+ display: block;
+ margin: 0;
+ padding-right: 5px;
+ color: var(--dark);
+
+}
+.data{
+    display: block;
+}

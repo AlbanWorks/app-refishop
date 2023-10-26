@@ -1,7 +1,7 @@
 import React from 'react'
 import st from '../MakeCashflowReports.module.css'
 import { Button, VARIANTS } from '../../../components/Button/Button'
-
+//deprecated
 const SectionSelector = ({transferSection, setTransferSection}) => {
   return (
     <div className={st.selector}>
