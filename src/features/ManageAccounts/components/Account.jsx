@@ -11,12 +11,8 @@ import { db } from '../../../services/firebase/firebaseConfig'
 import { doc, onSnapshot } from "firebase/firestore";
 import COL from '../utils/enums/collections'
 
-const STORES=[
-    'el pollo',
-    'sabor a campo'
-]
 
-const Account = ({employee, refresh}) => {
+const Account = ({employee, stores, refresh}) => {
     const [Employee, setEmployee] = useState(employee)
     const [newRole, setNewRole] = useState(null)
     const [newStore, setNewStore] = useState(null)
@@ -56,7 +52,7 @@ const Account = ({employee, refresh}) => {
                 />
                 <label className={st.label}>Cambiar Negocio</label>
                 <Select 
-                    objectToMap={STORES} 
+                    objectToMap={stores} 
                     action={(value)=>setNewStore(value)}
                 />
                 <ActionButtons 

@@ -4,11 +4,12 @@ import FS from '../../utils/enums/fetchStates'
 import Spinner from '../../components/Spinner/Spinner'
 import ConfirmCard from '../../components/ConfirmCard/ConfirmCard'
 import EmployeeList from './components/EmployeeList'
-import { getAccounts } from './utils/methods/FetchAccounts'
+import { getAccounts, getStoresFromFB } from './utils/methods/FetchAccounts'
 
 //la funcionalidad de refresh es necesaria pero me gustaria mejorarla
 const ManageAccounts = () => {
     const [fetchState, setFetchState] = useState(FS.FETCHING)
+    const [stores, setStores] = useState([])
     const [employees, setEmployees] = useState([])
     const [newAccounts, setNewAccounts] = useState([])
 
@@ -23,6 +24,14 @@ const ManageAccounts = () => {
         else{
             setEmployees(query.employees)
             setNewAccounts(query.newAccounts)
+            fetchStores()
+        }
+    }
+    const fetchStores = async () => {
+        const query = await getStoresFromFB()
+        if(query.error) setFetchState(FS.ERROR)
+        else{
+            setStores(query)
             setFetchState(FS.SUCSESS)
         }
     }
@@ -37,6 +46,7 @@ const ManageAccounts = () => {
                 <EmployeeList 
                     employees={employees} 
                     newAccounts={newAccounts} 
+                    stores={stores}
                     refresh={fetchUsers}
                 />
             :fetchState === FS.ERROR ?

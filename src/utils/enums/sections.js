@@ -8,6 +8,7 @@ const SECTIONS = {
     REQUEST_ADVANCE: 'Solicitar Adelanto',
     MANAGE_ACCOUNTS: 'Administrar Cuentas',
     VISUALIZE_EMPLOYEE_TIMES: 'Ver Horarios',
+    MANAGE_STORES: 'Administrar Negocios',
 }
 
 export default SECTIONS

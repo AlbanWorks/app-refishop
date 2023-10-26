@@ -3,13 +3,18 @@ import st from '../ManageAccounts.module.css'
 import Account from './Account'
 import NewAccount from './NewAccount'
 
-const EmployeeList = ({employees, newAccounts, refresh={refresh}}) => {
+const EmployeeList = ({employees, newAccounts, stores, refresh={refresh}}) => {
 
   return (
     <>
         {
             employees.map((employee, index)=>
-                <Account key={index} employee={employee} refresh={refresh}/>
+                <Account 
+                    key={index} 
+                    employee={employee} 
+                    stores={stores} 
+                    refresh={refresh}
+                />
             )
         }
         {
@@ -17,7 +22,12 @@ const EmployeeList = ({employees, newAccounts, refresh={refresh}}) => {
         }
         {
             newAccounts.map((account, index)=>
-                <NewAccount key={index} employee={account} refresh={refresh}/>
+                <NewAccount 
+                    key={index} 
+                    employee={account}
+                    stores={stores} 
+                    refresh={refresh}
+                />
             )
         }
     </>

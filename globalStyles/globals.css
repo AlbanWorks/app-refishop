@@ -34,6 +34,9 @@
     box-sizing: border-box;
     padding: 10px;
 }
+.blockedInfo h3{
+    text-align: center;
+ } 
 .blockedInfo span{
    text-align: center;
 } 

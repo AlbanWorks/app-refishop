@@ -1,6 +1,19 @@
 import {db} from '../../../../services/firebase/firebaseConfig'
-import { doc, setDoc, deleteDoc, getDocs, collection } from "firebase/firestore";
+import { doc, setDoc, deleteDoc, getDocs,getDoc, collection } from "firebase/firestore";
 import COL from '../enums/collections';
+
+const getStoresFromFB = async () => {
+    try {
+        const docSnap = await getDoc(doc(db, 'organizacion', 'negocios'))
+        const stores = docSnap.data().storeArray 
+        return stores.filter((storeName) => storeName !== '');
+
+    } 
+    catch (error) {
+        return{error}
+    }
+}
+
 
 const getAccounts = async() => {
     try{
@@ -79,4 +92,4 @@ const deleteAccount = async (employee, collection) => {
     }
 }
 
-export {getAccounts,updateAccount,acceptUser, deleteAccount}
+export {getAccounts,updateAccount,acceptUser, deleteAccount, getStoresFromFB}

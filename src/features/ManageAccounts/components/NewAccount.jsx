@@ -8,12 +8,7 @@ import FS from '../../../utils/enums/fetchStates'
 import COL from '../utils/enums/collections'
 import { acceptUser ,deleteAccount } from '../utils/methods/FetchAccounts'
 
-const STORES=[
-    'el pollo',
-    'sabor a campo'
-]
-
-const NewAccount = ({employee, refresh}) => {
+const NewAccount = ({employee, stores, refresh}) => {
     const [newRole, setNewRole] = useState(null)
     const [newStore, setNewStore] = useState(null)
     const [fetchState, setFetchState] = useState(FS.IDLE)
@@ -51,7 +46,7 @@ const NewAccount = ({employee, refresh}) => {
                 />
                 <label className={st.label}>Selecconar Negocio</label>
                 <Select 
-                    objectToMap={STORES} 
+                    objectToMap={stores} 
                     action={(value)=>setNewStore(value)}
                 />
                 <ActionButtons 
