@@ -5,8 +5,8 @@
     "scope": "/",
     "start_url": "/",
     "name": "Gestion",
-    "short_name": "Repara",
-    "description": "sistemas internos de Gestion",
+    "short_name": "Gestion",
+    "description": "Sistemas internos de Gestion",
     "icons": [
         {
             "src": "/icons/icon-192x192.png",
