@@ -1,7 +1,7 @@
 .container{
     width: 100%;
     box-sizing: border-box;
-    font-size: 0.9em;
+    font-size: 1em;
     position: relative;
 }
 .locationButtonContainer{

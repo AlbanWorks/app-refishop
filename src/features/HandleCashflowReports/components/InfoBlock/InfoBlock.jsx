@@ -26,11 +26,11 @@ const InfoBlock = ({data}) => {
         <DataPiece title={'Negocio: '} data={data.store}/>
         <DataPiece title={'Enviado: '} data={parseDate(data.timestamp)}/>
         <DataPiece title={'Efectivo: '} data={currency.format(data.general.cash)}/>
-        <DataPiece title={'Débito: '} data={currency.format(data.general.cash)}/>
-        <DataPiece title={'Crédito: '} data={currency.format(data.general.cash)}/>
-        <DataPiece title={'Payway:'} data={currency.format(data.general.cash)}/>
-        <DataPiece title={'Prisma:'} data={currency.format(data.general.cash)}/>
-        <DataPiece title={'MercadoPago:'} data={currency.format(data.general.cash)}/>
+        <DataPiece title={'Débito: '} data={currency.format(data.general.debit)}/>
+        <DataPiece title={'Crédito: '} data={currency.format(data.general.credit)}/>
+        <DataPiece title={'Payway:'} data={currency.format(data.general.payway)}/>
+        <DataPiece title={'Prisma:'} data={currency.format(data.general.prisma)}/>
+        <DataPiece title={'MercadoPago:'} data={currency.format(data.general.mercadopago)}/>
         <div className={st.locationButtonContainer}>
             <LocationButton 
                 latitude={data.location.latitude} 

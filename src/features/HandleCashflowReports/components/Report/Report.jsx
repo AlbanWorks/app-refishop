@@ -3,6 +3,11 @@ import st from './Report.module.css'
 import DropdownBox from '../../../../components/DropdownBox/DropdownBox'
 import Table from '../../../../components/Table/Table'
 
+const currency = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+});
+
 const Report = ({title, colTitles, sectionData}) => {
 
     const getTotal = (section) => {
@@ -11,12 +16,13 @@ const Report = ({title, colTitles, sectionData}) => {
             if( typeof row.monto === 'number') total += row.monto
             else return 'error'
         });
-        return total
+
+        return currency.format(total)
     }
 
   return (
     <div className={st.container}>
-        <DropdownBox title={title} state={'$' + getTotal(sectionData)}>
+        <DropdownBox title={title} state={getTotal(sectionData)}>
             <Table titles={colTitles} data={sectionData}/>   
         </DropdownBox>
     </div>

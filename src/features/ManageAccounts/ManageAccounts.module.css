@@ -58,7 +58,7 @@
 }
 .employeeInfo{
     padding-top: 10px;
-    font-size: 0.9em;
+    font-size: 1em;
 }
 .employeeInfo b {
     color: var(--dark);
