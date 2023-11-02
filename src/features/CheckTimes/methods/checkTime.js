@@ -5,6 +5,7 @@ import TimeCheck from '../../../utils/classes/TimeCheck'
 
 const fetchPrevious = async (userData, checkType) => {
     try {
+        console.log(getRoute(userData,checkType), getDocName());
         const docRef = doc(db, getRoute(userData,checkType), getDocName())
         const previous = await getDoc(docRef)
         if(previous.exists()) return {exists:'document already exists'}

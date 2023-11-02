@@ -24,9 +24,15 @@ const sendReport = async ({general,transfer,userData,location}) => {
 const parseDate = () => {
     const date = new Date()
     const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate()
-    return  `${year}/${month}/${day}`  
+    const rawmonth = date.getMonth() + 1;
+    const rawday = date.getDate()
+    let day;
+    let month;
+    if(rawday < 10) day = `0${rawday}`
+    else day = rawday
+    if(rawmonth < 10) month = `0${rawmonth}`
+    else month = rawmonth
+    return  `${year}/${month}/${day}`   
 }
 
 const removeIds = (arrayOfObjects) => {
