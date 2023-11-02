@@ -64,7 +64,8 @@ const emptyGeneral = () => {
         credit:'',
         prisma:'',
         payway:'',
-        mercadopago:''
+        mercadopago:'',
+        qr:''
     }
 }
 

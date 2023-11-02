@@ -1,9 +1,10 @@
-import React from 'react'
+import React,{useState} from 'react'
 import ProfilePicture from '../../components/ProfilePicture/ProfilePicture'
 import { Button,VARIANTS } from '../../components/Button/Button'
 import st from './EditProfile.module.css'
 
 const EditProfile = () => {
+const [propic, setPropic] = useState('/profile.jpg')
 
   return (
     <div className={st.container}>
@@ -12,7 +13,12 @@ const EditProfile = () => {
         <label for="file-upload" class="custom-file-upload" className={st.label}>
             Seleccionar Archivo
         </label>
-        <input id="file-upload" type="file" className={st.inputFile}/>
+        <input 
+            id="file-upload" 
+            type="file" 
+            className={st.inputFile} 
+            onChange={(e)=>setPropic(e.target.files[0])}
+        />
         <p className={st.info}>Por el momento la personalización del perfil está desactivada.</p>
         <div className={st.buttonContainer}>
             <Button variant={VARIANTS.PRIMARY} text={'Guardar Cambios'} click={()=>{}} />

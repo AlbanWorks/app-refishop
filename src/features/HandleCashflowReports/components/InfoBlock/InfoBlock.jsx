@@ -31,6 +31,7 @@ const InfoBlock = ({data}) => {
         <DataPiece title={'Payway:'} data={currency.format(data.general.payway)}/>
         <DataPiece title={'Prisma:'} data={currency.format(data.general.prisma)}/>
         <DataPiece title={'MercadoPago:'} data={currency.format(data.general.mercadopago)}/>
+        <DataPiece title={'QR:'} data={currency.format(data.general.qr)}/>
         <div className={st.locationButtonContainer}>
             <LocationButton 
                 latitude={data.location.latitude} 

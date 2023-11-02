@@ -41,6 +41,11 @@ const General = ({general, setGeneral}) => {
             handle={value=>handle('mercadopago', value)}
             defvalue={general.mercadopago}
         />
+        <Input 
+            title ={'QR'} 
+            handle={value=>handle('qr', value)}
+            defvalue={general.mercadopago}
+        />
     </div>
   )
 }
