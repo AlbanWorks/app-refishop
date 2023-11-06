@@ -66,7 +66,7 @@ const ERR = {
                         errorType === ERR.ALREADY_EXISTS ?
                             'Ya se marcó un horario para esta fecha.'
                         :errorType === ERR.OTHER ?
-                            'Un error ha ocurrido, revise su conexión e intentelo nuevamente.Recuerde tener activada la ubicación y autorizar a la app acceso a ella.'
+                            'Un error ha ocurrido, revise su conexión e intentelo nuevamente. Recuerde tener activada la ubicación y autorizar a la app acceso a ella.'
                         : null
                     }
                     buttonText={'Aceptar'}

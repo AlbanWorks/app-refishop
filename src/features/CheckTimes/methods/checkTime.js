@@ -1,6 +1,6 @@
 import TT from "../../../utils/enums/TimeTypes";
 import {db} from '../../../services/firebase/firebaseConfig'
-import { doc, setDoc, getDoc } from 'firebase/firestore'
+import { doc, setDoc, collection, getDoc, addDoc } from 'firebase/firestore'
 import TimeCheck from '../../../utils/classes/TimeCheck'
 
 const fetchPrevious = async (userData, checkType) => {
@@ -18,9 +18,8 @@ const fetchPrevious = async (userData, checkType) => {
 
 const setCheckTime = async (userData, location, checkType) => {
     try {
-        const docRef = doc(db, getRoute(userData,checkType), getDocName())
         const timeCheck = new TimeCheck(new Date(), location, false).plain()
-        await setDoc(docRef, timeCheck);
+        await addDoc(collection(db, getRoute(userData,checkType)), timeCheck);
         return{sucsess:'sucsess'}
     } 
     catch (error) {
