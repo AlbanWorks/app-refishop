@@ -49,7 +49,7 @@ const checkEmptyFields = ({general, transfer}) => {
     transfer.forEach(item => {
         if(nullOrEmpty(item.monto) || nullOrEmpty(item.transf)) emptyTransferItems = true;
     });
-    if(emptyTransferItems) return {error: 'rellene o borre los campos vacíos'}
+    if(emptyTransferItems) return {error: 'Ningún campo debe estar vacío al enviar el reporte, rellene con ceros o borre si es posible los campos vacíos.'}
     return {sucsess: 'sucsess'}
 }
 

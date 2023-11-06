@@ -1,15 +1,16 @@
 .inferiorContainer{
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     box-sizing: border-box;
     padding: 5px;
+    height: 35px;
 }
 .inputAndLabelContainer{
     box-sizing: border-box;
-    width: 300px;
-    height: 30px;
+    height: 100%;
+    width: 200px;
     display: flex;
     align-items: center;
     font-size: 0.9em;
@@ -17,11 +18,21 @@
 .inputContainer{
     width: 70px;
     height: 100%;
+    display: flex;
+    align-items: center;
 }
 .label{
     padding: 5px;
 }
+.buttonBar{
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
 .buttonContainer{
-    width: 100px;
-    height: 30px;
+    width: 150px;
+    height: 35px;
 }

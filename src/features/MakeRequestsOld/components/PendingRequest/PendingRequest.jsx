@@ -1,7 +1,5 @@
 import React from 'react'
 import DropdownBox from '../../../../components/DropdownBox/DropdownBox'
-import Textarea from '../../../../components/Inputs/Textarea/Textarea'
-import DateInput from '../../../../components/Inputs/DateInput/DateInput'
 import{Button, VARIANTS} from '../../../../components/Button/Button'
 import REQ_TYPES from '../../../../utils/enums/requestTypes'
 import REQ_STATES from '../../../../utils/enums/requestStates'

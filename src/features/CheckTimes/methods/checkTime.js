@@ -5,17 +5,15 @@ import TimeCheck from '../../../utils/classes/TimeCheck'
 
 const fetchPrevious = async (userData, checkType) => {
     try {
-        console.log(getRoute(userData,checkType), getDocName());
         const docRef = doc(db, getRoute(userData,checkType), getDocName())
         const previous = await getDoc(docRef)
         if(previous.exists()) return {exists:'document already exists'}
         return {empty:'no document'}
     } 
     catch (error) {
-        console.log('cosi', error);
         return{error}
        
-    }
+    } // deshabilitada
 }
 
 const setCheckTime = async (userData, location, checkType) => {
@@ -26,7 +24,6 @@ const setCheckTime = async (userData, location, checkType) => {
         return{sucsess:'sucsess'}
     } 
     catch (error) {
-        console.log('se labora', error);
         return{error}
     }
 

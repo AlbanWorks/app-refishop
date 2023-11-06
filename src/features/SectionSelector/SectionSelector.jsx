@@ -19,9 +19,15 @@ const SectionSelector = ({section, userData}) => {
             section === SECTIONS.CHECK_ENTRY_AND_EXIT ?
                 <CheckTimes userData={userData}/>
             :section === SECTIONS.REQUEST_FREE_DAY ?
-                <MakeRequests requestType={REQ_TYPES.FREE_DAY}/>
+                <MakeRequests 
+                    requestType={REQ_TYPES.FREE_DAY} 
+                    userData={userData}
+                />
             :section === SECTIONS.REQUEST_ADVANCE ?
-                <MakeRequests requestType={REQ_TYPES.SALARY_ADVANCE}/> 
+                <MakeRequests 
+                    requestType={REQ_TYPES.SALARY_ADVANCE} 
+                    userData={userData}
+                /> 
             :section === SECTIONS.EDIT_PROFILE?
                 <EditProfile/>
             :section === SECTIONS.HANDLE_REQUESTS?

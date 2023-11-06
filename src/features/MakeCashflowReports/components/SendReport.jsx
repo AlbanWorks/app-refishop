@@ -20,7 +20,7 @@ const SendReport = ({fetchState, HandleSendReport, setFetchState, refresh}) => {
                 </div>
             :fetchState === FS.ERROR ?
                 <ConfirmCard 
-                    info={'Ha ocurrido un error, revise su conexión e intentelo nuevamente.'}
+                    info={'Ha ocurrido un error, revise su conexión e intentelo nuevamente, recuerde tener activada la ubicación y autorizar a la app acceso a ella.'}
                     buttonText={'Aceptar'} 
                     nextState={()=>setFetchState(FS.IDLE)}                            
                 />

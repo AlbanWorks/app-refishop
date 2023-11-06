@@ -21,15 +21,10 @@ const ERR = {
     const handler = async (checkType) => {
         setFetchState(FS.FETCHING)
        const previousCheck = await fetchPrevious(userData, checkType)
-       if(previousCheck.exists){
-            setErrorType(ERR.ALREADY_EXISTS)
-            setFetchState(FS.ERROR)
-            return
-       }
        if(previousCheck.error){
             setErrorType(ERR.OTHER)
             setFetchState(FS.ERROR)
-        return
+            return
        }
        const setCheck = await setCheckTime(userData, location, checkType)
        if(setCheck.error){
@@ -71,7 +66,7 @@ const ERR = {
                         errorType === ERR.ALREADY_EXISTS ?
                             'Ya se marcó un horario para esta fecha.'
                         :errorType === ERR.OTHER ?
-                            'Un error ha ocurrido, intentelo nuevamente.'
+                            'Un error ha ocurrido, revise su conexión e intentelo nuevamente.Recuerde tener activada la ubicación y autorizar a la app acceso a ella.'
                         : null
                     }
                     buttonText={'Aceptar'}

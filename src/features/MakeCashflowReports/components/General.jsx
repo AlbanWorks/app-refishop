@@ -44,7 +44,7 @@ const General = ({general, setGeneral}) => {
         <Input 
             title ={'QR'} 
             handle={value=>handle('qr', value)}
-            defvalue={general.mercadopago}
+            defvalue={general.qr}
         />
     </div>
   )
