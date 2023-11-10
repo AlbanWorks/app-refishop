@@ -1,21 +1,27 @@
-import { storage } from "../../../services/firebase/firebaseConfig"
-import {ref, uploadBytesResumable, getDownloadURL, deleteObject, refFromURL } from "@firebase/storage"
+import { storage, db } from "../../../services/firebase/firebaseConfig"
+import {ref, uploadBytesResumable, getDownloadURL} from "@firebase/storage"
+import { doc,updateDoc } from "firebase/firestore";
 import imageCompression from 'browser-image-compression'
+import COL from "../../ManageAccounts/utils/enums/collections";
 
 
-const uploadPicture = async (id,file) =>{
+const uploadPicture = async (userData,file) =>{
     try {
         const compressedImage = await compressImage(file)
-        const storageRef = ref(storage, `${id}/profile_picture`)
+        const storageRef = ref(storage, `${userData.id}/profile_picture`)
         const img = await uploadBytesResumable(storageRef, compressedImage)
+        await updateDoc( doc(db, COL.EMPLEADOS, userData.id),{
+           profile_picture: !userData.profile_picture
+        });
         return {sucsess: img}
     } catch (error) {
+        console.log(error)
         return{error}
     }
 }
-const getProfilePictureURL = async (id) => {
+const getProfilePictureURL = async (userData) => {
     try {
-        const storageRef = ref(storage, `${id}/profile_picture`)
+        const storageRef = ref(storage, `${userData.id}/profile_picture`)
         const ImageURL = await getDownloadURL(storageRef)
         return {ImageURL: ImageURL}
     } 
@@ -27,7 +33,7 @@ const compressImage = async (image) => {
     //using npm browser-image-compression 
     const options = {
         maxSizeMB: 0.3,
-        maxWidthOrHeight: 640,
+        maxWidthOrHeight: 300,
         fileType:'image/jpeg',
         useWebWorker: true
     }
@@ -40,26 +46,4 @@ const compressImage = async (image) => {
     }
 }
 
-const getImageURL = async (file)=>{
-    const storageRef = ref(storage, pic_route(file.name))
-    try {
-        let ImageURL = await getDownloadURL(storageRef)
-        return ImageURL
-    } catch (error) {
-        console.log("error al descargar imagen", err)
-        return{error}
-    }
-}
-
-const deleteImage = async (Name)=>{
-    try {
-        console.log(pic_route(Name))
-        const storageRef = ref(storage, pic_route(Name))
-        console.log(pic_route(Name))
-        //await deleteObject(storageRef)
-        return{sucsess:"is dead"}
-    } catch (error) {
-        return{error}
-    }
-}
 export {uploadPicture, getProfilePictureURL}

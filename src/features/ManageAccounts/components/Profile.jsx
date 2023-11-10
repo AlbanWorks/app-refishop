@@ -1,11 +1,14 @@
 import React from 'react'
 import st from '../ManageAccounts.module.css'
 import ProfilePicture from '../../../components/ProfilePicture/ProfilePicture'
+import usePofilePicture from '../../../hooks/useProfilePicture'
 
 const Profile = ({data}) => {
+    const propic = usePofilePicture(data)
+
   return (
     <div className={st.profile}>
-        <ProfilePicture img={data.profile_picture} diameter={'50px'}/>
+        <ProfilePicture img={propic} diameter={'50px'}/>
         <span className={st.employeeInfo}> 
             <b>Nombre: </b> 
             {data.username}

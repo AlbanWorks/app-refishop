@@ -29,7 +29,7 @@ const SectionSelector = ({section, userData}) => {
                     userData={userData}
                 /> 
             :section === SECTIONS.EDIT_PROFILE?
-                <EditProfile/>
+                <EditProfile userData={userData}/>
             :section === SECTIONS.HANDLE_REQUESTS?
                 <HandleRequests/>
             :section === SECTIONS.MANAGE_ACCOUNTS?

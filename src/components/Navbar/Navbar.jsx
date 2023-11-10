@@ -3,11 +3,13 @@ import ProfilePicture from '../ProfilePicture/ProfilePicture'
 import HamburguerButton from './components/HamburgerButton/HamburgerButton'
 import getSections from '../../utils/methods/sectionHandler'
 import st from './Navbar.module.css'
+import useProfilePicture from '../../hooks/useProfilePicture'
 
 const Navbar = ({userData, selectOption}) => {
 
     const [menuOpen, setMenuOpen] = useState(false)
     const [options, setOptions] = useState(getSections(userData.role))
+    const propic = useProfilePicture(userData)
 
     const HandleSelection = (value) => {
         setMenuOpen(false)
@@ -20,7 +22,7 @@ const Navbar = ({userData, selectOption}) => {
   return ( 
     <div className={menuOpen ? st.navbarFixed : st.navbar}>
         <div className={st.profile}>
-            <ProfilePicture img={userData.profile_picture} diameter={'45px'}/>
+            <ProfilePicture img={propic} diameter={'45px'}/>
             <h3 className={st.emName}>{userData.username}</h3>
             <span className={st.position}>{`(${userData.role})`}</span>
         </div>
