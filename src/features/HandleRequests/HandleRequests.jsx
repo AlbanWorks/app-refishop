@@ -1,50 +1,48 @@
 import React, {useState,useEffect} from 'react'
-import REQ_TYPES from '../../utils/enums/requestTypes'
 import st from './HandleRequests.module.css'
 import Request from './components/Request/Request'
 import FS from '../../utils/enums/fetchStates'
 import Spinner from '../../components/Spinner/Spinner'
+import { fetchRequests, updateRequestState} from './methods/handleRequests'
+import ConfirmCard from '../../components/ConfirmCard/ConfirmCard'
 
-
-const requestProvisional = [
-    {
-        req_type: REQ_TYPES.FREE_DAY, 
-        employee: 'juan',
-        origin_date:'August 19, 2023 23:15:30', 
-        requested_date: 'August 21, 2023 23:15:30',
-        amount:0,
-        reason: 'razones de fuerza mayor'
-    },
-    {
-        req_type: REQ_TYPES.SALARY_ADVANCE, 
-        employee: 'pablo',
-        origin_date:'August 19, 2023 23:15:30', 
-        requested_date: 'August 19, 2023 23:15:30',
-        amount:1200,
-        reason: 'familiar se enfermó'
-    },
-]
 const HandleRequests = () => {
     const [fetchState, setFetchState] = useState(FS.IDLE)
     const [requests, setRequests] = useState(null)
 
     useEffect(() => {
-      fetchRequests()
+        getRequests()
     }, [])
 
-    const fetchRequests = async () => {
+    const getRequests = async () => {
         setFetchState(FS.FETCHING)
-        setRequests( requestProvisional)
-        setFetchState(FS.SUCSESS)
+        const query = await fetchRequests()
+        if(query.error) setFetchState(FS.ERROR)
+        else{
+            setRequests(query.docs)
+            setFetchState(FS.SUCSESS)
+        }
     }
-    
+    const handleUpdate = async (state, reqType, id) => {
+        await updateRequestState(state, reqType, id)
+    }
+    const remove = (index) => {
+        const requestsClone = [...requests]
+        requestsClone.splice(index,1)
+        setRequests(requestsClone)
+    }
 
   return (
     <div className={st.container}> 
     {
         fetchState === FS.SUCSESS ?
             requests.map((request, index)=>
-                <Request key={index} request={request}/>
+                <Request 
+                    key={request.key} 
+                    request={request}
+                    update = {(state, reqType, id)=>handleUpdate(state, reqType, id)}
+                    remove={()=>remove(index)}
+                />
             )
         :fetchState === FS.ERROR ?
             <div className={st.errorContainer}>

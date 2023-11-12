@@ -4,15 +4,16 @@
 .inferiorModule{
     width: 100%;
     box-sizing: border-box;
-    padding-top: 10px;
+    padding-top: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 .requestBody{
-    font-size: 0.9em;
+    font-size: 1em;
+    line-height: 1.5em;
     margin: 0;
-    padding: 10px 0;
+    padding: 10px;
 }
 .buttonContainer{
     width: 100px;

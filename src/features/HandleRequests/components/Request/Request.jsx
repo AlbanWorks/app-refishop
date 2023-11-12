@@ -1,57 +1,55 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import st from './Request.module.css'
 import DropdownBox from '../../../../components/DropdownBox/DropdownBox'
 import { Button, VARIANTS } from '../../../../components/Button/Button'
 import REQ_TYPES from '../../../../utils/enums/requestTypes'
+import { db } from '../../../../services/firebase/firebaseConfig'
+import { doc, onSnapshot } from "firebase/firestore";
+import { formatAdvance, formatFreeDay } from '../../methods/formatMessages'
 
-const formatFreeDay = (request) => {
-    const msj = `El día ${parseDate(request.origin_date)}
-                ${request.employee} solicitó un día libre para el ${parseDate(request.requested_date)} 
-                debido a: ${request.reason}`
-    return msj
-}
-const formatAdvance = (request) => {
-    const msj = `El día ${parseDate(request.origin_date)}
-                ${request.employee} solicitó un adelanto de sueldo de $${request.amount}
-                para el ${parseDate(request.requested_date)} 
-                debido a: ${request.reason}`
-    return msj
-}
-const parseDate = (dateString) => {
-    const result1 = new Date(dateString).toLocaleDateString('en-GB');
-    return result1
-}
+const Request = ({request, update, remove}) => {
+  
+    const updateState = (state) => {
+        update(state,request.reqType,request.id)
+    }
 
-const Request = ({request}) => {
+    useEffect(() => {
+        const unsub = onSnapshot(doc(db, `solicitudes/${request.reqType}/todas`, request.id), (doc) => {
+            if(doc.data() !== undefined){
+                if(doc.data().state !== 'pending') remove()
+            }
+        })
+        return () => unsub()
+    }, [])
 
   return (
     <div className={st.container}>
         <DropdownBox 
-            title={request.req_type === REQ_TYPES.FREE_DAY ? 'Día Libre' : 'Adelanto'} 
+            title={request.reqType === REQ_TYPES.FREE_DAY ? 'Día Libre' : 'Adelanto'} 
             state={request.employee}
         >
             {
-                request.req_type === REQ_TYPES.FREE_DAY ?
+                request.reqType === REQ_TYPES.FREE_DAY ?
                     <p className={st.requestBody}>{formatFreeDay(request)}</p>
                 :
                     <p className={st.requestBody}>{formatAdvance(request)}</p>
-            }
+            } 
             <div className={st.inferiorModule}>
                 <div className={st.buttonContainer}>
                     <Button 
                         text={'Denegar'} 
                         variant={VARIANTS.NEGATIVE} 
-                        click={()=>{}}
+                        click={()=> updateState('denied')}
                     />
                 </div>
                 <div className={st.buttonContainer}>
                     <Button 
                         text={'Aceptar'} 
                         variant={VARIANTS.POSSITIVE} 
-                        click={()=>{}}
+                        click={()=> updateState('accepted')}
                     />
                 </div>
-            </div>
+            </div> 
         </DropdownBox>
     </div>
   )
