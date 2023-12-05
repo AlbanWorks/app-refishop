@@ -60,6 +60,8 @@ const nullOrEmpty = (field) => {
 const emptyGeneral = () => {
     return{
         cash:'',
+        fuddo:'',
+        cinagos:'',
         debit:'',
         credit:'',
         prisma:'',

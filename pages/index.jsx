@@ -15,7 +15,7 @@ export default function Home() {
     useEffect(() => {
       if(loginState === LOGIN_STATE.NO_USER) router.push('/sesion')
     }, [loginState])
-    
+     
   return (
     <>
         {

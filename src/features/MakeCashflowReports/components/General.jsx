@@ -16,6 +16,14 @@ const General = ({general, setGeneral}) => {
             handle={value=>handle('cash', value)}
             defvalue={general.cash}
         />
+        <Input title ={'Fuddo'} 
+            handle={value=>handle('fuddo', value)}
+            defvalue={general.fuddo}
+        />
+         <Input title ={'Cinagos'} 
+            handle={value=>handle('cinagos', value)}
+            defvalue={general.cinagos}
+        />
         <Input 
             title ={'Débito'} 
             handle={value=>handle('debit', value)}

@@ -26,6 +26,8 @@ const InfoBlock = ({data}) => {
         <DataPiece title={'Negocio: '} data={data.store}/>
         <DataPiece title={'Enviado: '} data={parseDate(data.timestamp)}/>
         <DataPiece title={'Efectivo: '} data={currency.format(data.general.cash)}/>
+        <DataPiece title={'Fuddo: '} data={ data.general.fuddo ? currency.format(data.general.fuddo) : 'N/E'}/>
+        <DataPiece title={'Cinagos: '} data={ data.general.cinagos ? currency.format(data.general.cinagos) : 'N/E'}/>
         <DataPiece title={'Débito: '} data={currency.format(data.general.debit)}/>
         <DataPiece title={'Crédito: '} data={currency.format(data.general.credit)}/>
         <DataPiece title={'Payway:'} data={currency.format(data.general.payway)}/>
