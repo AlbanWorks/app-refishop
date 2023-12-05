@@ -39,8 +39,7 @@ export default async function handler(req, res) {
     const body = JSON.parse(req.body)
     const subscriptionObject = await getSubscriptionObject(body.to)
     if(!subscriptionObject){
-        res.statusCode = 500
-        res.end()
+        res.status(400).send({ message: `no conseguimos en firebase de${body.to}` })
         return
     }
     webPush.sendNotification(
@@ -49,13 +48,14 @@ export default async function handler(req, res) {
       )
       .then(response => {
         res.writeHead(response.statusCode, response.headers).end(response.body)
+        res.status(400).send({ message: `enviamos la notificacion` })
       })
       .catch(err => {
         if ('statusCode' in err) {
           res.writeHead(err.statusCode, err.headers).end(err.body)
         } else {
           console.error(err)
-          res.statusCode = 500
+          res.status(500).send({ message: 'error extraño' })
           res.end()
         }
     })
