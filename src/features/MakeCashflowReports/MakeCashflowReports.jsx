@@ -29,8 +29,6 @@ const MakeCashflowReports = ({userData}) => {
     }, []);
 
     const HandleSendReport = async () => {
-        SendNotification()
-        return
         const check = checkEmptyFields({general,transfer})
         console.log({general,transfer});
         if(check.error){
@@ -78,6 +76,7 @@ const MakeCashflowReports = ({userData}) => {
             setFetchState = {value => setFetchState(value)}
             refresh={refresh}
         />
+        <button onClick={SendNotification}>Tests</button>
     </div>
   )
 }
