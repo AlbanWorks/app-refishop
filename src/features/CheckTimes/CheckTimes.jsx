@@ -26,6 +26,7 @@ const ERR = {
             setFetchState(FS.ERROR)
             return
        }
+       
        const setCheck = await setCheckTime(userData, location, checkType)
        if(setCheck.error){
             setErrorType(ERR.OTHER)

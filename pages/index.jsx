@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import useAuth from "../src/hooks/useAuth"
 import SectionSelector from "../src/features/SectionSelector/SectionSelector"
 import Spinner from "../src/components/Spinner/Spinner"
+import handlePushNotifications from "../src/utils/methods/hanldePushNotifications"
 
 export default function Home() {
     
@@ -14,6 +15,7 @@ export default function Home() {
 
     useEffect(() => {
       if(loginState === LOGIN_STATE.NO_USER) router.push('/sesion')
+      if(loginState === LOGIN_STATE.USER) handlePushNotifications(userData)
     }, [loginState])
      
   return (

@@ -6,6 +6,10 @@ import FS from '../../utils/enums/fetchStates'
 import useLocation from '../../hooks/useLocation'
 import {sendReport, checkEmptyFields, emptyGeneral} from './methods/Reports'
 
+const tato = 'x9Srmxj3HafzM8hmWUd3AU42fNJ2'
+const santiago = '8r6mkCXE3sdlL6wVplpPEvJ0gWJ3'
+
+
 const MakeCashflowReports = ({userData}) => {
     const [fetchState, setFetchState] = useState(FS.IDLE)
     const [general, setGeneral] = useState(emptyGeneral())
@@ -25,6 +29,8 @@ const MakeCashflowReports = ({userData}) => {
     }, []);
 
     const HandleSendReport = async () => {
+        SendNotification()
+        return
         const check = checkEmptyFields({general,transfer})
         console.log({general,transfer});
         if(check.error){
@@ -34,13 +40,26 @@ const MakeCashflowReports = ({userData}) => {
         setFetchState(FS.FETCHING)
         const query = await sendReport({general,transfer,userData,location})
         if(query.error)setFetchState(FS.ERROR)
-        else setFetchState(FS.SUCSESS)
+        else {
+            setFetchState(FS.SUCSESS)
+            SendNotification()
+            
+        }
     }
 
     const refresh = () => {
         setTransfer([])
         setGeneral(emptyGeneral())
         setFetchState(FS.IDLE)
+    }
+
+    const SendNotification = ()=>{
+        const order = {
+            to: santiago,
+            title: 'Gestión (Pruebas)',
+            message: `${userData.username} envió un reporte de ${userData.store}`
+        }
+        fetch("/api/hello",{method: 'POST',body: JSON.stringify(order)})
     }
 
   return (
