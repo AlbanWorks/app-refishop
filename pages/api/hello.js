@@ -33,33 +33,24 @@ const getSubscriptionObject = async (id) =>{
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
-        res.status(405).send({ message: 'Only POST requests allowed' })
+        res.status(200).json({ message: 'Only POST requests allowed' })
         return
     }
     const body = JSON.parse(req.body)
     const subscriptionObject = await getSubscriptionObject(body.to)
     if(!subscriptionObject){
-        res.status(400).send({ message: `no conseguimos en firebase de${body.to}` })
+        res.status(200).json({ message: `no conseguimos en firebase de${body.to}` })
         return
     }
     webPush.sendNotification(
         subscriptionObject,
         JSON.stringify({ title: body.title || 'sin titulo', message: body.message || 'sin mensaje' })
       )
-      .then(response => {
-        res.writeHead(response.statusCode, response.headers).end(response.body)
-        res.status(400).send({ message: `enviamos la notificacion` })
-      })
       .catch(err => {
-        if ('statusCode' in err) {
-          res.writeHead(err.statusCode, err.headers).end(err.body)
-        } else {
-          console.error(err)
-          res.status(500).send({ message: 'error extraño' })
-          res.end()
-        }
+        res.status(400).json({ message: 'error al enviar notificaciones' })
+        return
     })
-    
+    res.status(200).json({ message: 'proceso concluido' })
 }
 
 /*

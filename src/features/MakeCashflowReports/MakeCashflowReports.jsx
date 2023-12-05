@@ -60,7 +60,7 @@ const MakeCashflowReports = ({userData}) => {
             message: `${userData.username} envió un reporte de ${userData.store}`
         }
         const res = await fetch("/api/hello",{method: 'POST',body: JSON.stringify(order)})
-        const movies = await res.json();
+        const movies = await res.json()
         console.log(movies);
     }
 
