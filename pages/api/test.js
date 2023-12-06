@@ -21,11 +21,7 @@ export default async (req, res) => {
     if (req.method === 'POST') {
         const body = JSON.parse(req.body)
         const fb = await getSubscriptionObject(body.to)
-        const msj = await webPush.sendNotification(
-            fb.push_notifications,
-            JSON.stringify({ title: body.title || 'sin titulo', message: body.message || 'sin mensaje' })
-        )
-        res.status(200).json({ message: fb.username, notification: msj });
+        res.status(200).json({ message: fb.username });
     }
     else if (req.method === 'GET') {
         res.status(200).json({ message: 'GET METHOD USED' });
