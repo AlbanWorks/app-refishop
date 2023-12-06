@@ -1,9 +1,9 @@
 import { firestore } from '../../src/services/firebase/firebaseAdminConfig'
 
-const webPush = require('web-push');
+/*const webPush = require('web-push');
 const PUBLIC_KEY = process.env.NEXT_PUBLIC_WEB_PUSH_PUBLIC_KEY
 const PRIVATE_KEY = process.env.WEB_PUSH_PRIVATE_KEY
-webPush.setVapidDetails('mailto:example@yourdomain.org', PUBLIC_KEY, PRIVATE_KEY)
+webPush.setVapidDetails('mailto:example@yourdomain.org', PUBLIC_KEY, PRIVATE_KEY)*/
 
 const getSubscriptionObject = async (id) =>{
     try{
