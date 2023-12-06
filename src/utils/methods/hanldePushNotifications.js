@@ -13,7 +13,7 @@ const hanldePushNotifications = async (userData) => {
     if(!subscription){
         const subscribe = await SW.pushManager.subscribe({
             userVisibleOnly: true,
-            applicationServerKey: base64ToUint8Array(process.env.NEXT_PUBLIC_WEB_PUSH_PUBLIC_KEY)
+            applicationServerKey:'BPWimmkwnT81UvyNWP-HuxokPW_UA9uahnA6Twd737UgDgGkY5eIOI32O0cdHhSIKMvUWGYd0zmQ7mpABX3TNiw'
         })
         //esto tiene que pasar por el backend en versiones futuras
         try {
