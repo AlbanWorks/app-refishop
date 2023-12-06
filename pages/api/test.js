@@ -1,6 +1,6 @@
 import { firestore } from '../../src/services/firebase/firebaseAdminConfig'
-const webPush = require('web-push');
 
+const webPush = require('web-push');
 const PUBLIC_KEY = 'BPWimmkwnT81UvyNWP-HuxokPW_UA9uahnA6Twd737UgDgGkY5eIOI32O0cdHhSIKMvUWGYd0zmQ7mpABX3TNiw'
 const PRIVATE_KEY = 'zkKpFLTnaOc1KW64fpBA4uEJ8thf58oodRarE26x2u0'
 webPush.setVapidDetails('mailto:example@yourdomain.org', PUBLIC_KEY, PRIVATE_KEY)
@@ -21,7 +21,11 @@ export default async (req, res) => {
     if (req.method === 'POST') {
         const body = JSON.parse(req.body)
         const fb = await getSubscriptionObject(body.to)
-        res.status(200).json({ message: fb.username });
+        const msj = await webPush.sendNotification(
+            fb.push_notifications,
+            JSON.stringify({ title: body.title || 'sin titulo', message: body.message || 'sin mensaje' })
+        )
+        res.status(200).json({ message: fb.username, notification: msj });
     }
     else if (req.method === 'GET') {
         res.status(200).json({ message: 'GET METHOD USED' });
