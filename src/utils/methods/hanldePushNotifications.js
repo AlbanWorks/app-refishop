@@ -1,7 +1,7 @@
 import { db } from "../../services/firebase/firebaseConfig";
 import { doc, updateDoc } from "firebase/firestore";
 
-const hanldePushNotifications = async (userData) => {
+const hanldePNPermissions = async (userData) => {
     const permission = await Notification.requestPermission()
     if(permission === 'denied') {
         alert('Por favor, active las notificaciones para estar al tanto de sus solicitudes')
@@ -47,4 +47,25 @@ const base64ToUint8Array = base64 => {
     }
   }
 
-export default hanldePushNotifications
+  const tato = 'x9Srmxj3HafzM8hmWUd3AU42fNJ2'
+  const santiago = '8r6mkCXE3sdlL6wVplpPEvJ0gWJ3'
+
+  const sendNotification = async (msj)=>{
+    const order = {
+        to: tato,
+        title: 'Gestión',
+        message: msj
+    }
+    //replico la orden para mi para probar
+    fetch("/api/test",{method: 'POST',body: JSON.stringify(order)})
+    const order2 = {
+        to: santiago,
+        title: 'Gestión',
+        message: msj
+    }
+    fetch("/api/test",{method: 'POST',body: JSON.stringify(order2)})
+}
+
+
+
+export {hanldePNPermissions, sendNotification}

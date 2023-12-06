@@ -5,10 +5,7 @@ import SendReport from './components/SendReport'
 import FS from '../../utils/enums/fetchStates'
 import useLocation from '../../hooks/useLocation'
 import {sendReport, checkEmptyFields, emptyGeneral} from './methods/Reports'
-
-const tato = 'x9Srmxj3HafzM8hmWUd3AU42fNJ2'
-const santiago = '8r6mkCXE3sdlL6wVplpPEvJ0gWJ3'
-
+import {sendNotification} from '../../utils/methods/hanldePushNotifications'
 
 const MakeCashflowReports = ({userData}) => {
     const [fetchState, setFetchState] = useState(FS.IDLE)
@@ -40,7 +37,7 @@ const MakeCashflowReports = ({userData}) => {
         if(query.error)setFetchState(FS.ERROR)
         else {
             setFetchState(FS.SUCSESS)
-            SendNotification()
+            sendNotification(`${userData.username} envió un reporte de ventas de ${userData.store}`)
             
         }
     }
@@ -50,18 +47,6 @@ const MakeCashflowReports = ({userData}) => {
         setGeneral(emptyGeneral())
         setFetchState(FS.IDLE)
     }
-
-    const SendNotification = async ()=>{
-        const order = {
-            to: tato,
-            title: 'Gestión',
-            message: `${userData.username} envió un reporte de ventas de ${userData.store}`
-        }
-        const res = await fetch("/api/test",{method: 'POST',body: JSON.stringify(order)})
-        const movies = await res.json()
-        console.log(movies);
-    }
-
   return (
     <div className={st.container}>
         <ReportUI 

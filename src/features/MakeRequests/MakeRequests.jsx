@@ -8,6 +8,7 @@ import { db } from '../../services/firebase/firebaseConfig'
 import { sendRequest, deleteRequest } from './methods/requests'
 import REQ_TYPES from '../../utils/enums/requestTypes'
 import Advance from './components/Advance'
+import {sendNotification} from '../../utils/methods/hanldePushNotifications'
 
 const REQ_FS = {
     FETCHING: 'fetching',
@@ -23,11 +24,11 @@ const MakeRequests = ({userData}) => {
 
     const handleSend = async (data) => {
         await sendRequest(data, userData)
+        sendNotification(`${userData.username} envió una solicitud`)
     }
     const handleDelete = async (reqType) => {
         await deleteRequest(reqType, userData.id)
     }
-
     useEffect(() => {
         const unsubFreeDay = onSnapshot(doc(db, 'solicitudes/dia_libre/todas', userData.id), (doc) => {
             if(doc.data() !== undefined){
