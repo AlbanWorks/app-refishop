@@ -1,7 +1,8 @@
 
 export default (req, res) => {
     if (req.method === 'POST') {
-        res.status(200).json({ message: 'POST METHOD USED' });
+        const body = JSON.parse(req.body)
+        res.status(200).json({ message: body.to });
     }
     else if (req.method === 'GET') {
         res.status(200).json({ message: 'GET METHOD USED' });
