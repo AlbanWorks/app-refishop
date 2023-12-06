@@ -7,8 +7,8 @@ const getSubscriptionObject = async (id) =>{
         console.log(productoFB.data().push_notifications)
         return productoFB.data().push_notifications.username
     }
-    catch{
-        return 'no name'
+    catch(error){
+        return error
     }
 }
 
