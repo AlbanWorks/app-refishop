@@ -19,7 +19,7 @@ export default async (req, res) => {
         res.status(200).json({ message: fb });
     }
     else if (req.method === 'GET') {
-        res.status(200).json({ message: 'GET METHOD USED' });
+        res.status(200).json({ message: 'GET METHOD USED!' });
     }
     else{
         res.status(200).json({ message: 'OTHER METHOD USED' });
