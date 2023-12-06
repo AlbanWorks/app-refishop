@@ -31,20 +31,18 @@ const getSubscriptionObject = async (id) =>{
     }
 }
 
-export default async function handler(req, res) {
+export default (req, res) => {
     if (req.method === 'POST') {
         const body = JSON.parse(req.body)
-        const subscriptionObject = 'hola'//await getSubscriptionObject(body.to)
-        if(!subscriptionObject){
-            res.status(200).json({ message: `no conseguimos en firebase de${body.to}` })
-        }
-        else{
-            res.status(200).json({ message: subscriptionObject.endpoint })
-        }
-
+        res.status(200).json({ message: body.to });
     }
-    else res.status(405).json({ message: 'solo metodo post por favor' })
-}
+    else if (req.method === 'GET') {
+        res.status(200).json({ message: 'GET METHOD USED' });
+    }
+    else{
+        res.status(200).json({ message: 'OTHER METHOD USED' });
+    }
+};
 
 /*
 webPush.sendNotification(
