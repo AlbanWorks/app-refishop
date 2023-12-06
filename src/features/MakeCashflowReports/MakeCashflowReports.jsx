@@ -52,11 +52,10 @@ const MakeCashflowReports = ({userData}) => {
     }
 
     const SendNotification = async ()=>{
-
         const order = {
-            to: santiago,
-            title: 'Gestión (Pruebas)',
-            message: `${userData.username} envió un reporte de ${userData.store}`
+            to: tato,
+            title: 'Gestión',
+            message: `${userData.username} envió un reporte de ventas de ${userData.store}`
         }
         const res = await fetch("/api/test",{method: 'POST',body: JSON.stringify(order)})
         const movies = await res.json()
@@ -77,7 +76,6 @@ const MakeCashflowReports = ({userData}) => {
             setFetchState = {value => setFetchState(value)}
             refresh={refresh}
         />
-        <button onClick={SendNotification}>Tests</button>
     </div>
   )
 }
