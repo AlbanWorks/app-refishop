@@ -4,11 +4,11 @@ const getSubscriptionObject = async (id) =>{
     try{
         const route = `empleados/${id}`
         const productoFB = await firestore.doc(route).get()
-        console.log(productoFB.data().push_notifications)
-        return productoFB.data().push_notifications.username
+        console.log(productoFB.data())
+        return productoFB.data().username
     }
-    catch(error){
-        return error
+    catch{
+        return 'no name'
     }
 }
 
@@ -19,7 +19,7 @@ export default async (req, res) => {
         res.status(200).json({ message: fb });
     }
     else if (req.method === 'GET') {
-        res.status(200).json({ message: 'GET METHOD USED!' });
+        res.status(200).json({ message: 'GET METHOD USED' });
     }
     else{
         res.status(200).json({ message: 'OTHER METHOD USED' });

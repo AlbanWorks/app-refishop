@@ -52,6 +52,7 @@ const MakeCashflowReports = ({userData}) => {
     }
 
     const SendNotification = async ()=>{
+
         const order = {
             to: santiago,
             title: 'Gestión (Pruebas)',
