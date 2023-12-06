@@ -31,29 +31,27 @@ const getSubscriptionObject = async (id) =>{
     }
 }
 
-export default (req, res) => {
+export default async function handler(req, res) {
     if (req.method === 'POST') {
         const body = JSON.parse(req.body)
-        res.status(200).json({ message: body.to });
+        const subscriptionObject = await getSubscriptionObject(body.to)
+        if(!subscriptionObject){
+            res.status(200).json({ message: `no conseguimos en firebase de${body.to}` })
+            return
+        }
+        
     }
-    else if (req.method === 'GET') {
-        res.status(200).json({ message: 'GET METHOD USED' });
-    }
-    else{
-        res.status(200).json({ message: 'OTHER METHOD USED' });
-    }
-};
+    else res.status(405).json({ message: 'solo metodo post' })
+}
 
 /*
-webPush.sendNotification(
-            subscriptionObject,
-            JSON.stringify({ title: body.title || 'sin titulo', message: body.message || 'sin mensaje' })
-          )
-          .catch(err => {
-            res.status(400).json({ message: 'error al enviar notificaciones' })
-            return
-        })
-        res.status(200).json({ message: 'proceso concluido' })
+Public Key:
+BPWimmkwnT81UvyNWP-HuxokPW_UA9uahnA6Twd737UgDgGkY5eIOI32O0cdHhSIKMvUWGYd0zmQ7mpABX3TNiw
+
+Private Key:
+zkKpFLTnaOc1KW64fpBA4uEJ8thf58oodRarE26x2u0
+
+
 
 
 */

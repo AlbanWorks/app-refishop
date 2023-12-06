@@ -1,3 +1,16 @@
+import { firestore } from '../../src/services/firebase/firebaseAdminConfig'
+
+const getSubscriptionObject = async (id) =>{
+    try{
+        const route = `empleados/${id}`
+        const productoFB = await firestore.doc(route).get()
+        console.log(productoFB.data().push_notifications)
+        return productoFB.data().push_notifications
+    }
+    catch{
+        return null
+    }
+}
 
 export default (req, res) => {
     if (req.method === 'POST') {
