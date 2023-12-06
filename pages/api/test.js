@@ -16,7 +16,7 @@ export default async (req, res) => {
     if (req.method === 'POST') {
         const body = JSON.parse(req.body)
         const fb = await getSubscriptionObject(body.to)
-        res.status(200).json({ message: fb.username });
+        res.status(200).json({ message: 'holas' });
     }
     else if (req.method === 'GET') {
         res.status(200).json({ message: 'GET METHOD USED' });
